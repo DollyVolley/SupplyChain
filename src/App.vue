@@ -1,16 +1,9 @@
 <template>
   <div id="app">
-    <div class="jumbotron jumbotron-fluid constraint">
-      <div class="container">
-        <h1 class="display-4">Supply Chain Simulator</h1>
-        <p class="lead">Play around with digital twins. Try concepts as ownership, ownership-transfer through the channel framework!
-        All states and references are stored on the Tangle. Check it out by referencing a root on: 
-      </p>
-      </div>
-    </div>
+    <app-header class="header"></app-header>
     <div class="container-fluid">
       <div class="simulatorMenu">
-        <div class="simulatorMenuItem">Acting as: 
+        <div class="simulatorMenuItem">Acting as:
           <select v-model="actingAs">
             <option disabled value="">Choose a party:</option>
             <option>Supplier</option>
@@ -23,6 +16,9 @@
         <app-twin-overview class="container overview"></app-twin-overview>
         <app-controller class="container controller"></app-controller>
       </div>
+      <app-concept></app-concept>
+      <app-about></app-about>
+      <app-contact></app-contact>
       <app-footer></app-footer>
     </div>
   </div>
@@ -45,19 +41,25 @@ export default {
 
 
 <style>
-.jumbotron {
-  margin: 0;
+
+div {
+  font-family: "Gill Sans Extrabold", Helvetica, sans-serif
 }
 
-div { 
-  font-family: "Gill Sans Extrabold", Helvetica, sans-serif 
+.header {
+  height: 16.5vh;
+  display: inline-block;
+}
+
+.main-window {
+  height: 100vh;
 }
 
 .simulatorMenu {
   padding: 1em 0;
   display:flex;
   justify-content: center;
-  
+
 }
 
 .simulatorMenuItem {
@@ -67,12 +69,12 @@ div {
 
 .overview {
   float:left;
-  display:inline; 
-  width: 70%;
+  display:inline;
+  width: 60%;
 }
 
 .controller {
-  width: 25%;
+  width: 30%;
   float: right;
   display: grid;
 

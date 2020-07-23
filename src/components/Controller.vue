@@ -7,7 +7,7 @@
                 <label>Name:</label>
                 <input type="text"  v-model="twinNameInput" placeholder="Rocket #42" v-on:keyup.enter="createTwin">
                 <button v-on:click="createTwin" >Create Twin</button>
-            </div>     
+            </div>
             <div class="list-group-item card">
                 <h3>Attach Measurement</h3>
                 <label>Capacity [mAh]:</label>
@@ -23,7 +23,7 @@
             <div class="list-group-item card">
                 <h3>Approve Transfer</h3>
                 <label>Root of new owner:</label>
-                <input type="text"  v-model="twinTransferRequestInput" placeholder="DYBVDOBVTIRLM....." v-on:keyup.enter="createTwin" class="right">
+                <input type="text"  v-model="twinTransferAcceptInput" placeholder="DYBVDOBVTIRLM....." v-on:keyup.enter="createTwin" class="right">
                 <button v-on:click="createTwin" >Approve Transfer</button>
             </div>
         </div>
@@ -35,7 +35,10 @@ import Consts from "../common/const"
 export default {
     data() {
         return {
-            twinNameInput: '',
+          twinNameInput: '',
+          twinMeasurementInput: '',
+          twinTransferRequestInput: '',
+          twinTransferAcceptInput: '',
         }
     },
     methods: {
@@ -45,17 +48,17 @@ export default {
             if (!owner) {
                 console.error("You can not act as uNdEfiEnd *Insert Spongebob Meme*. Choose a party!")
                 return 1
-            } 
+            }
 
             let name = this.twinNameInput
             if (!name) {
                 console.error("No name typed!")
                 return 1
-            } 
+            }
 
             let mamState = Mam.init(Consts.IOTA_NODE_URL)
             let root = Mam.getRoot(mamState)
-            
+
             let twin = {
                 root: root,
                 state: mamState,
