@@ -12,23 +12,22 @@
         </div>
 
         <div class="column">
-          <p class="meta">{{ twin.owner }}</p>
-          <p class="meta">{{ twin.create_date }}</p>
+          <p class="meta">{{ twin.data.owner }}</p>
+          <p class="meta">{{ twin.data.create_date }}</p>
         </div>
       </div>
 
-      <div class="" v-for="metric in twin.measurements">
+      <div class="" v-for="metric in twin.data.measurements">
         {{ metric }}
       </div>
 
       <div class="bottom">
-        <div class="TangleExplorerLink">
-          <button v-on:click=openTangleExplorer><img alt="Tangle Explorer" src="../assets/IOTA_icon.png" /></button>
-        </div>
-        <div class="root-container">
-          <p class="meta2">Root:</p>
-          <p class="root">{{ twin.root }}</p>
-        </div>
+          <button  class="bottom" v-on:click=copyToClipboard>
+          <div class="root-container">
+            <p class="meta2">Root:</p>
+            <p class="root">{{ twin.root }}</p>
+          </div>
+        </button>
       </div>
 
     </div>
@@ -43,16 +42,10 @@ export default {
       }
   },
   methods: {
-      openTangleExplorer: function() {
-        if (!this.rootExplURL) {
-          const mode = 'public'
-          const provider = 'https://nodes.devnet.iota.org'
-          var envURL = `https://mam-explorer.firebaseapp.com/?provider=${encodeURIComponent(provider)}&mode=${mode}&root=`
-          this.rootExplURL = envURL + this.twin.root
-        }
 
-        window.open(this.rootExplURL)
-      }
+    copyToClipboard: function() {
+
+    }
   }
 }
 </script>
@@ -100,9 +93,13 @@ export default {
   .bottom {
     color:white;
     background: #5e5e5e;
-    padding: 5px 15px;
-
+    padding:0;
+    margin:0;
     width: 100%;
+  }
+
+  .imgbtn . {
+    width: 50%;
   }
   .root {
     font-size: 7pt;

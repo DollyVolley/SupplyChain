@@ -40,10 +40,10 @@
 </template>
 
 <script>
-import Consts from "../common/const"
-var Converter = require('@iota/converter');
+  import Consts from "../common/const"
 
-console.log(Converter)
+
+  var Converter = require('@iota/converter');
 
 export default {
   data() {
@@ -55,6 +55,16 @@ export default {
     }
   },
   methods: {
+    publishMessage: function (mamState, trytesMessage) {
+      console.log("Commiting new State")
+      var message = Mam.create(mamState, trytesMessage);
+      try {
+        Mam.attach(message.payload, message.address, Consts.IOTA_ATTACH_DEPTH, Consts.IOTA_ATTACH_WORK)
+      } catch (err) {
+        console.log("There was an error attaching the message", err);
+      }
+      return message.state
+    },
     createTwin: function createTwin() {
       let owner = this.$parent.actingAs
       if (!owner) {
@@ -74,45 +84,55 @@ export default {
       let root = Mam.getRoot(mamState)
 
       let twin = {
-          root: root,
+        state: null,
+        root: root,
+        data: {
           name: name,
           owner: owner,
+          measurements: [],
           create_date: new Date().toISOString().split('T')[0]
+        }
       }
 
-      var data = JSON.stringify(twin)
+      var data = JSON.stringify(twin.data)
       var trytes = Converter.asciiToTrytes(data);
 
-      const message = Mam.create(mamState, trytes)
-
-      // Save new mamState
-       twin.mamState = message.state
-
-      // Attach the payload
-      Mam.attach(message.payload, message.address, 3, 9)
-      .then(
-        console.log('Published Creation', twin, '\n')
-      )
+      twin.state  = this.publishMessage(mamState, trytes)
       this.$parent.twins.push(twin)
       return true
-      },
+    },
+    attachMeasurement:  function () {
+      let twin = this.$parent.twins[this.$parent.activeItem]
 
-  attachMeasurement: function() {
-    let twin = this.$parent.activeItem
+      if (twin == null) {
+        console.error("Please select a twin!")
+        alert("\"Please select a twin!")
+        return 1
+      }
 
-    const trytes = Converter.tritsToBytes(JSON.stringify(packet))
-    const message = Mam.create(mamState, trytes)
+      if (!this.twinMeasurementInput) {
+        console.error("Please enter a measure")
+        alert("\"A measure would be nice!")
+        return 1
+      }
+      if (!this.$parent.actingAs) {
+        console.error("Choose who you want to act as")
+        alert("Choose who you want to act as")
+        return 1
+      }
 
-    // Save new mamState
-    let mamState = message.state
+      if (twin.data.measurements) {
+        twin.data.measurements.push(this.twinMeasurementInput)
+      }else {
+        twin["measurements"] = this.twinMeasurementInput
+      }
 
-    // Attach the payload
-    Mam.attach(message.payload, message.address, 3, 9)
-    .then(
-      console.log('Published', packet, '\n')
-    )
+      const data = JSON.stringify(twin.data)
+      const trytes = Converter.asciiToTrytes(data);
 
-      return message.root
+      twin.state = this.publishMessage(twin.state, trytes)
+      this.$parent.twins[this.$parent.actingAs] = twin
+
     }
   }
 }
