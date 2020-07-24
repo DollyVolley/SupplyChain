@@ -12,6 +12,7 @@
           </select>
         </div>
       </div>
+      <app-menu-bar></app-menu-bar>
       <div class="main-window">
         <app-twin-overview class="container overview"></app-twin-overview>
         <app-controller class="container controller"></app-controller>
