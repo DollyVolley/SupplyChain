@@ -17,4 +17,17 @@ npm run dev
 
 '''
 
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+Planned
+- transfer asset
+- refactor
+- efficient data handling with the tangle
+- ownership graph.
+- exchange view in overview (if it origins from another twin instance)
+
+Planned B (if the client library gets obsolete with the Chrysalis update)
+- Make rust streams implementation as api server.
+- Bonus: __Industry Monitor__ possible
+    1. implementing node_exporter
+    2. prometheus production dashboard
+    3. Prometheus alarm via appropiate promql (richer in information than simply treshold)
+

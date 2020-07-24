@@ -1,9 +1,7 @@
 <template>
     <div class="container-fluid">
-        <div class="title">Digital Twins Overview</div>
           <div>
             <label>
-              Make Declaration of Symbols (Buttons with icon etc...)
             </label>
           </div>
             <app-twincard class="float"

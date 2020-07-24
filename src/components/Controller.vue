@@ -1,6 +1,5 @@
 <template>
   <div>
-    <div class="title">Controller</div>
       <div class="list-group">
         <div class="list-group-item card">
           <h3>Create Twin</h3>
@@ -89,7 +88,7 @@ export default {
         data: {
           name: name,
           owner: owner,
-          measurements: [],
+          data_points: [],
           create_date: new Date().toISOString().split('T')[0]
         }
       }
@@ -121,10 +120,15 @@ export default {
         return 1
       }
 
-      if (twin.data.measurements) {
-        twin.data.measurements.push(this.twinMeasurementInput)
+
+      if (twin.data.data_points) {
+        var data_point = {
+          value: this.twinMeasurementInput,
+          time_stamp: new Date().toLocaleString()
+        }
+        twin.data.data_points.push(data_point)
       }else {
-        twin["measurements"] = this.twinMeasurementInput
+        twin["data_points"] = this.twinMeasurementInput
       }
 
       const data = JSON.stringify(twin.data)

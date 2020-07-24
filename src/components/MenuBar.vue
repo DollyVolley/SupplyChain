@@ -1,24 +1,22 @@
 <template>
   <div class="wrapper">
-    <div class="btn-group btn-group-toggle item" data-toggle="buttons">
-      <label class="btn btn-secondary ">
-        <input type="radio" v-model="dry_mode"> on
-      </label>
-      <label class="btn btn-secondary">
-        <input type="radio" v-model="dry_mode"> off
-      </label>
+    <hr>
+    <div Style="clear:both"></div>
+    <div class="simulatorMenuItem">
+      <select class="selecto" v-model="$parent.actingAs">
+        <option  disabled value="">Choose your actor!</option>
+        <option>Supplier</option>
+        <option>Producer</option>
+        <option>Customer</option>
+      </select>
     </div>
-    <div class="btn-group btn-group-toggle item" data-toggle="buttons">
-      <label class="btn">
-        <input type="radio" v-model="channel_mode"> public
-      </label>
-      <label class="btn">
-        <input type="radio" v-model="channel_mode"> private
-      </label>
+    <div Style="clear:both"></div>
+    <div class="tangleexplorer">
+      <label>Track asset with </label>
+      <button v-on:click=openOnTangleExplorer type="button" class="btn-outline-primary btn btn-sm"
+      title="Select a asset to verificate it on ...">Tangle Explorer</button>
     </div>
-    <div class="item">
-      <button v-on:click=openOnTangleExplorer type="button" class="btn btn-secondary" >Verify</button>
-    </div>
+
   </div>
 </template>
 
@@ -50,25 +48,34 @@
 <style scoped>
 
   .wrapper {
-    justify-content: space-evenly;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 1em 0 0;
     width:100%;
     height: 4em;
   }
 
-
-  .item {
-    float: left;
-    width: 33%;
-    height: 100%;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .btn {
+    margin: 0;
   }
 
-  .btn {
-    margin-bottom: 5px;
-    width: 10%;
+  .selecto {
+    width:12em;
+    margin-right: 150px;
+  }
+
+  .simulatorMenuItem {
+    width: 20%;
+    float:left;
+    margin-right: 10em;
+
+  }
+
+  .tangleexplorer {
+    width: 50%;
+    display: inline-block;
   }
 
 </style>

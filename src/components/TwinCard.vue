@@ -2,7 +2,7 @@
     <div class="wrapper">
 
       <div class="head">
-        <p class="name">{{ twin.name }}</p>
+        <p class="name">{{ twin.data.name }}</p>
       </div>
 
       <div class="row">
@@ -17,9 +17,30 @@
         </div>
       </div>
 
-      <div class="" v-for="metric in twin.data.measurements">
-        {{ metric }}
+      <div v-if="twin.data.data_points.length" class="metrics-cont">
+        <div>
+          <div class="cont-left">
+            <p class=key>Time</p>
+
+          </div>
+       </div>
+          <div class="cont-right">
+            <p class="key">Value</p>
+          </div>
+       </div>
+
+      <div class="metrics-cont" v-for="metric in twin.data.data_points">
+        <div>
+          <div class="cont-left">
+            <p class="value">{{ metric.time_stamp }}</p>
+          </div>
+          <div class="cont-right">
+            <p class="value">{{ metric.value }}</p>
+          </div>
+        </div>
+        <hr>
       </div>
+
 
       <div class="bottom">
           <button  class="bottom" v-on:click=copyToClipboard>
@@ -29,7 +50,6 @@
           </div>
         </button>
       </div>
-
     </div>
 </template>
 
@@ -42,9 +62,7 @@ export default {
       }
   },
   methods: {
-
     copyToClipboard: function() {
-
     }
   }
 }
@@ -57,6 +75,10 @@ export default {
     flex: auto;
     border-style: solid;
     border-color: #5e5e5e;
+  }
+
+  .hr {
+    margin-top: 5px;
   }
 
   .head {
@@ -90,6 +112,27 @@ export default {
     margin: 0 auto;
   }
 
+  .key {
+    font-size: 8pt;
+    margin: 0;
+  }
+
+  .value {
+    font-size: 8pt;
+    margin: 0;
+    float:left;
+  }
+  .cont-left {
+    width: 50%;
+    margin: 0 0 0 15px;
+    float:left;
+  }
+  .cont-right {
+    width: 20%;
+    margin: 0;
+    float: right;
+  }
+
   .bottom {
     color:white;
     background: #5e5e5e;
@@ -98,14 +141,12 @@ export default {
     width: 100%;
   }
 
-  .imgbtn . {
-    width: 50%;
-  }
   .root {
     font-size: 7pt;
     word-wrap: break-word;
     margin: 0;
   }
+
 
 
 </style>

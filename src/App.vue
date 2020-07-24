@@ -2,17 +2,8 @@
   <div id="app">
     <app-header class="header"></app-header>
     <div class="container-fluid">
-      <div class="simulatorMenu">
-        <div class="simulatorMenuItem">Acting as:
-          <select v-model="actingAs">
-            <option disabled value="">Choose a party:</option>
-            <option>Supplier</option>
-            <option>Producer</option>
-            <option>Customer</option>
-          </select>
-        </div>
-      </div>
-      <app-menu-bar></app-menu-bar>
+
+      <app-menu-bar class="bar-menu"></app-menu-bar>
       <div class="main-window">
         <app-twin-overview class="container overview"></app-twin-overview>
         <app-controller class="container controller"></app-controller>
@@ -55,18 +46,6 @@ div {
 
 .main-window {
   height: 100vh;
-}
-
-.simulatorMenu {
-  padding: 1em 0;
-  display:flex;
-  justify-content: center;
-
-}
-
-.simulatorMenuItem {
-  width: 20%;
-  float:left;
 }
 
 .overview {
