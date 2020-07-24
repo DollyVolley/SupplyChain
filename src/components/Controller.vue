@@ -41,7 +41,8 @@
 
 <script>
 import Consts from "../common/const"
-const Converter = require('@iota/converter/out/converter/src/index.js')
+var Converter = require('@iota/converter');
+
 console.log(Converter)
 
 export default {
@@ -79,7 +80,9 @@ export default {
           create_date: new Date().toISOString().split('T')[0]
       }
 
-      const trytes = Converter.tritsToBytes(JSON.stringify(twin))
+      var data = JSON.stringify(twin)
+      var trytes = Converter.asciiToTrytes(data);
+
       const message = Mam.create(mamState, trytes)
 
       // Save new mamState
@@ -88,7 +91,7 @@ export default {
       // Attach the payload
       Mam.attach(message.payload, message.address, 3, 9)
       .then(
-        console.log('Published', packet, '\n')
+        console.log('Published Creation', twin, '\n')
       )
       this.$parent.twins.push(twin)
       return true
