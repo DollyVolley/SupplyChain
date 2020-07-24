@@ -47,7 +47,7 @@ div {
 }
 
 .header {
-  height: 16.5vh;
+  height: 18vh;
   display: inline-block;
 }
 

@@ -1,33 +1,42 @@
 <template>
-    <div>
-        <div class="title">Controller</div>
-        <div class="list-group">
-            <div class="list-group-item card">
-                <h3>Create Twin</h3>
-                <label>Name:</label>
-                <input type="text"  v-model="twinNameInput" placeholder="Rocket #42" v-on:keyup.enter="createTwin">
-                <button v-on:click="createTwin" >Create Twin</button>
-            </div>
-            <div class="list-group-item card">
-                <h3>Attach Measurement</h3>
-                <label>Capacity [mAh]:</label>
-                <input type="text"  v-model="twinMeasurementInput" placeholder="243.76" v-on:keyup.enter="createTwin">
-                <button v-on:click="createTwin" >Attach Measurement</button>
-            </div>
-            <div class="list-group-item card">
-                <h3>Create Transfer Request</h3>
-                <label>Root of twin:</label>
-                <input type="text"  v-model="twinTransferRequestInput" placeholder="DYBVDOBVTIRLM....." v-on:keyup.enter="createTwin" class="right">
-                <button v-on:click="createTwin" >Request Transfer</button>
-            </div>
-            <div class="list-group-item card">
-                <h3>Approve Transfer</h3>
-                <label>Root of new owner:</label>
-                <input type="text"  v-model="twinTransferAcceptInput" placeholder="DYBVDOBVTIRLM....." v-on:keyup.enter="createTwin" class="right">
-                <button v-on:click="createTwin" >Approve Transfer</button>
-            </div>
+  <div>
+    <div class="title">Controller</div>
+      <div class="list-group">
+        <div class="list-group-item card">
+          <h3>Create Twin</h3>
+          <label>Name:</label>
+          <br>
+          <input type="text"  v-model="twinNameInput" placeholder="Rocket #42" v-on:keyup.enter="createTwin">
+          <br>
+          <button v-on:click="createTwin" >Create Twin</button>
         </div>
-    </div>
+        <div class="list-group-item card">
+          <h3>Attach Measurement</h3>
+          <label>Capacity [mAh]:</label>
+          <br>
+          <input type="text"  v-model="twinMeasurementInput" placeholder="243.76" v-on:keyup.enter="createTwin">
+          <br>
+          <button v-on:click="createTwin" >Attach Measurement</button>
+        </div>
+        <div class="list-group-item card">
+          <h3>Create Transfer Request</h3>
+          <label>Root of twin:</label>
+          <br>
+          <input type="text"  v-model="twinTransferRequestInput" placeholder="DYBVDOBVTIRLM....." v-on:keyup.enter="createTwin" class="right">
+          <br>
+          <button v-on:click="createTwin" >Request Transfer</button>
+        </div>
+        <div class="list-group-item card">
+          <h3>Approve Transfer</h3>
+          <br>
+          <label>Root of new owner:</label>
+          <br>
+          <input type="text"  v-model="twinTransferAcceptInput" placeholder="DYBVDOBVTIRLM....." v-on:keyup.enter="createTwin" class="right">
+          <br>
+          <button v-on:click="createTwin" >Approve Transfer</button>
+        </div>
+      </div>
+  </div>
 </template>
 
 <script>
@@ -76,6 +85,10 @@ export default {
 </script>
 
 <style>
+
+  button {
+    margin-top: 15px;
+  }
 
 .title{
     text-align: center;

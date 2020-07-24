@@ -1,13 +1,14 @@
 {
-  "name": "vue-webpack",
-  "description": "A Vue.js project",
-  "version": "1.0.0",
+  "name": "supply_chain_simulation",
+  "description": "Simulating a digital twin supply chain with IOTAs Tangle",
+  "version": "0.0.3",
   "author": "DollyVolley <oliver.schwarz@block42.tech>",
   "license": "MIT",
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "serve": "npm run build && docker build -t dollyvolley/scs ."
   },
   "dependencies": {
     "@iota/mam": "^0.7.3",
