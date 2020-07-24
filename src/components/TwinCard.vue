@@ -1,10 +1,31 @@
 <template>
-    <div class="container">
+    <div class="wrapper">
+
+      <div class="head">
         <p class="name">{{ twin.name }}</p>
-        <p class="meta">Owner:         {{ twin.owner }}</p>
-        <p class="meta">Creation Date: {{ twin.create_date }} </p>
-        <p>Root:</p>
+      </div>
+
+      <div class="row">
+        <div class="column">
+          <p class="meta">Owner: </p>
+          <p class="meta">Creation Date: </p>
+        </div>
+
+        <div class="column">
+          <p class="meta">{{ twin.owner }}</p>
+          <p class="meta">{{ twin.create_date }}</p>
+        </div>
+      </div>
+
+      <div class="" v-for="metric in twin.measurements">
+        {{ metric }}
+      </div>
+
+      <div class="bottom">
+        <p class="meta2">Root:</p>
         <p class="root">{{ twin.root }}</p>
+      </div>
+
     </div>
 </template>
 
@@ -16,32 +37,56 @@ export default {
 
 <style scoped>
 
-    p {
-        margin-bottom: 2px;
-    }
+  .wrapper {
+    width: 250px;
+    flex: auto;
+    border-style: solid;
+    border-color: #5e5e5e;
+  }
 
-    div {
-        margin-bottom: 1em;
-        background: aliceblue;
-        width: 75%;
-        height: 280px;
-    }
+  .head {
+    text-align: center;
+  }
 
-    .name {
-        margin: 1em 0;
-        font-size: 15pt;
-    }
+  .column {
+    float: left;
+    width: 50%;
+  }
 
-    .meta {
-        font-size: 10pt;
-    }
+  .row {
+    width: 100%;
+    padding: 10px;
+    margin: 0;
+  }
 
-    .root {
-        border: 1px solid black;
-        width: 50%;
-        font-size: 6pt;
-        word-wrap: break-word;
-    }
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  .meta {
+    font-size: 10pt;
+    margin-bottom: 5px;
+  }
+
+  .meta2 {
+    font-size: 10pt;
+    margin: 0 auto;
+  }
+
+  .bottom {
+    color:white;
+    background: #5e5e5e;
+    padding: 5px 15px;
+
+    width: 100%;
+  }
+  .root {
+    font-size: 7pt;
+    word-wrap: break-word;
+    margin: 0;
+  }
 
 
 </style>

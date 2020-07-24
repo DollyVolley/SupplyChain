@@ -8,8 +8,7 @@ import Header from './components/Header.vue'
 import About from './components/About.vue'
 import Concept from './components/Concept.vue'
 import Contact from './components/Contact.vue'
-
-
+import tritsToBytes from '../node_modules/@iota/converter/out/converter/src/index.js'
 
 Vue.component('app-header', Header)
 Vue.component('app-twincard', TwinCard)

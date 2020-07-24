@@ -34,6 +34,7 @@ export default {
       twins: [],
       twinNameInput: "",
       actingAs: "",
+      activeItem: null
     }
   }
 }
@@ -70,7 +71,7 @@ div {
 .overview {
   float:left;
   display:inline;
-  width: 60%;
+  width: 70%;
 }
 
 .controller {
@@ -83,3 +84,5 @@ div {
 
 
 </style>
+
+

@@ -2,32 +2,45 @@
     <div class="container-fluid">
         <div class="title">Digital Twins Overview</div>
             <app-twincard class="float"
-                v-for="item in $parent.twins"
+                v-for="(item, i ) in $parent.twins"
                 v-bind:twin="item"
-                v-bind:key="item.id"
+                v-bind:key="i"
+                :class="{active: i === $parent.activeItem}"
+                @click.native="select(i)"
             ></app-twincard>
     </div>
 </template>
 
 <script>
 export default {
-    props: ["twin"]
+  props: ["twin"],
+  methods: {
+    select: function(i) {
+      console.debug("Selected Twin Index: " + i)
+      this.$parent.activeItem = i;
+    }
+  }
 }
 </script>
 
 <style scoped>
 
-.title{
+  .title{
     text-align: center;
     font-size: 25pt;
     padding-bottom: 1em;
-}
+  }
 
-.float {
-	float: left;
-    width: 200px;
-    margin: 0.5em;
-}
+  .float {
+    float: left;
+    width: 250px;
+    margin: 0.75em;
+  }
+
+  .active {
+    background: #59ee9e;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
 
 
 </style>
