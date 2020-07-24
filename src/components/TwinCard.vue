@@ -22,8 +22,13 @@
       </div>
 
       <div class="bottom">
-        <p class="meta2">Root:</p>
-        <p class="root">{{ twin.root }}</p>
+        <div class="TangleExplorerLink">
+          <button v-on:click=openTangleExplorer><img alt="Tangle Explorer" src="../assets/IOTA_icon.png" /></button>
+        </div>
+        <div class="root-container">
+          <p class="meta2">Root:</p>
+          <p class="root">{{ twin.root }}</p>
+        </div>
       </div>
 
     </div>
@@ -31,7 +36,24 @@
 
 <script>
 export default {
-    props: ["twin"]
+    props: ["twin"],
+  data: function() {
+      return {
+        rootExplrURL:""
+      }
+  },
+  methods: {
+      openTangleExplorer: function() {
+        if (!this.rootExplURL) {
+          const mode = 'public'
+          const provider = 'https://nodes.devnet.iota.org'
+          var envURL = `https://mam-explorer.firebaseapp.com/?provider=${encodeURIComponent(provider)}&mode=${mode}&root=`
+          this.rootExplURL = envURL + this.twin.root
+        }
+
+        window.open(this.rootExplURL)
+      }
+  }
 }
 </script>
 

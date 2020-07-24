@@ -1,6 +1,11 @@
 <template>
     <div class="container-fluid">
         <div class="title">Digital Twins Overview</div>
+          <div>
+            <label>
+              Make Declaration of Symbols (Buttons with icon etc...)
+            </label>
+          </div>
             <app-twincard class="float"
                 v-for="(item, i ) in $parent.twins"
                 v-bind:twin="item"
@@ -14,11 +19,18 @@
 <script>
 export default {
   props: ["twin"],
+  data: function() {
+    return {
+      root: "",
+      rootExplURL: ""
+    }
+  },
   methods: {
     select: function(i) {
-      console.debug("Selected Twin Index: " + i)
+      console.debug("Selected Twdin Index: " + i)
       this.$parent.activeItem = i;
-    }
+    },
+
   }
 }
 </script>
