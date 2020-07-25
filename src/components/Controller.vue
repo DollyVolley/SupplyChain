@@ -23,7 +23,7 @@
           <br>
           <input type="text"  v-model="twinTransferRequestInput" placeholder="DYBVDOBVTIRLM....." v-on:keyup.enter="createTwin" class="right">
           <br>
-          <button v-on:click="createTwin" class="btn-outline-primary btn btn-sm">Request Transfer</button>
+          <button v-on:click="createTwin" class="btn-outline-primary btn btn-sm" disabled>Request Transfer</button>
         </div>
         <div class="list-group-item card">
           <h3>Approve Transfer</h3>
@@ -32,7 +32,7 @@
           <br>
           <input type="text"  v-model="twinTransferAcceptInput" placeholder="DYBVDOBVTIRLM....." v-on:keyup.enter="createTwin" class="right">
           <br>
-          <button v-on:click="createTwin" class="btn-outline-primary btn btn-sm">Approve Transfer</button>
+          <button v-on:click="createTwin" class="btn-outline-primary btn btn-sm" disabled>Approve Transfer</button>
         </div>
       </div>
   </div>
@@ -40,11 +40,9 @@
 
 <script>
   import Consts from "../common/const"
-
-
   var Converter = require('@iota/converter');
 
-export default {
+  export default {
   data() {
     return {
       twinNameInput: '',

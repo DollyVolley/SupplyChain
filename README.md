@@ -1,11 +1,12 @@
 # Supply Chain Simulator
 
-> Single to multi user real time testing!
+> Small supply chain / digital twin simulator and playground
 
 <img src="src/assets/screenshot.png"/>
 
-
 ## Developer Guide
+
+### Dev
 
 ``` bash
 # install dependencies
@@ -15,7 +16,21 @@ npm install
 npm run dev
 ```
 
-'''
+### Prod
+
+``` bash
+# install dependencies
+npm install
+
+# serve with hot reload at localhost:8080 on your server
+npm run serve
+```
+
+Best served with nginx.
+
+
+
+## Backlog
 
 Planned
 - transfer asset
