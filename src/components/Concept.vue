@@ -1,11 +1,12 @@
 <template>
     <div class="wrapper">
       <section id="GettingStarted"></section>
-      <hr>
+      <hr><br><br>
       <div class="container">
         <h1>Getting started</h1>
+        <br>
 
-        <p class="subtext">This simulation is, at least currently, all about playing around with digital twins.
+        <p >This simulation is, at least currently, all about playing around with digital twins.
           Try concepts as ownership, ownership-transfer, and verify it via the Tangle explorer.
           All states and references are stored on the Tangle.
         </p>

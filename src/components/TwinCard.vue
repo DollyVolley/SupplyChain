@@ -82,6 +82,7 @@ export default {
   }
 
   .head {
+    padding-top: 10px;
     text-align: center;
   }
 
@@ -92,8 +93,7 @@ export default {
 
   .row {
     width: 100%;
-    padding: 10px;
-    margin: 0;
+    padding: 0 0 10px 10px;
   }
 
   .row:after {

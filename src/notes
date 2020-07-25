@@ -1,29 +1,23 @@
-Ideas:
+Backlog:
+
+refactor: Controller
+Introduce tabs or at least dedicated sections to correlated operations
+{create twin, request_asset}
+
+introduce sim tags
+:hover -> show information how this would be done in production
+
+introduce edu tags
+:hover -> provide in-depth knowledge what the people can see here.
+
+powerup: request_asset
+introduce listener which notificates decision
+maybe post-chrysalis-update due to network dependency (R.I.P. Client Libs)
 
 dry mode:
 make dry simulation mode without actual transactions
 
-  <div id="app">
-    <app-header class="header"></app-header>
-    <div class="container-fluid">
-      <div class="simulatorMenu">
-        <div class="simulatorMenuItem">Acting as:
-          <select v-model="actingAs">
-            <option disabled value="">Choose a party:</option>
-            <app-menu-bar class="container navbar"></app-menu-bar>
-            <option>Supplier</option>
-            <option>Producer</option>
-            <option>Customer</option>
-          </select>
-        </div>
-      </div>
-      <div class="main-window">
-        <app-twin-overview class="container overview"></app-twin-overview>
-        <app-controller class="container controller"></app-controller>
-      </div>
-      <app-concept></app-concept>
-      <app-about></app-about>
-      <app-contact></app-contact>
-      <app-footer></app-footer>
-    </div>
-  </div>
+MAM mode:
+public, private or restricted
+
+

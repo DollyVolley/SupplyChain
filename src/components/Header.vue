@@ -6,16 +6,12 @@
         <a>
         </a>
       </h1>
-
     </div>
 
-    <div class="subtilte">
-      <div class="btn-group">
-        <button class="btn btn-default"><a href="https://dollyvolley.com/#Simulation">Simulation</a></button>
-        <button class="btn btn-default"><a href="https://dollyvolley.com/#GettingStarted">Getting Started</a></button>
-        <button class="btn btn-default"><a href="https://dollyvolley.com/#About">About</a></button>
-        <button class="btn btn-default"><a href="https://dollyvolley.com/#Contact">Contact</a></button>
-      </div>
+    <div class="btn-group">
+      <a href="https://dollyvolley.com/#GettingStarted"><div class="btn1">Gotting Started</div></a>
+      <a href="https://dollyvolley.com/#GettingStarted"><div class="btn1">Learn more</div></a>
+      <a href="https://dollyvolley.com/#About"><div class="btn1">About</div></a>
     </div>
   </div>
 </template>
@@ -31,38 +27,45 @@
     width: 100%;
   }
 
-  li {
-    width: inherit;
+  a {
+    margin-top: 1em;
+    width: 100%;
+    text-decoration: none;
+    font-size: 18pt;
   }
 
+
   .btn-group {
+    clear: both;
     width: 100%;
+    height: 2em;
+
     justify-content: space-evenly;
   }
 
-  .btn-group .btn {
-    width: 25%;
-  }
+  .btn1 {
+    background: #345695;
 
-  h1 {
-    font-family: 'Source Sans Pro', sans-serif;
-  }
-
-  button {
-    background: #4060AB;
+    width: 100%;
+    position: relative;
     border: none;
-    width:inherit;
     color: white;
+    text-align: center;
   }
 
-  button:hover {
+  .btn1:hover{
     background: transparent;
     border: none;
     color: white;
   }
 
+
+  h1 {
+    font-family: 'Source Sans Pro', sans-serif;
+  }
+
   .title {
-    height: 13vh;
+    height: 11.8vh;
     padding-top: 0.4em;
     padding-left: 2em;
     text-align: left;

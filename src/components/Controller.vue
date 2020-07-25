@@ -19,7 +19,9 @@
         </div>
         <div class="list-group-item card">
           <h3>Create Transfer Request</h3>
-          <label>Root of twin:</label>
+            Please select the prepared receiver object!
+            <a href="https://dollyvolley.com/#learn-more">Learn More</a>
+          <p>How does this work?</p>
           <br>
           <input type="text"  v-model="twinTransferRequestInput" placeholder="DYBVDOBVTIRLM....." v-on:keyup.enter="createTwin" class="right">
           <br>
@@ -62,6 +64,7 @@
       }
       return message.state
     },
+
     createTwin: function createTwin() {
       let owner = this.$parent.actingAs
       if (!owner) {
@@ -98,6 +101,7 @@
       this.$parent.twins.push(twin)
       return true
     },
+
     attachMeasurement:  function () {
       let twin = this.$parent.twins[this.$parent.activeItem]
 
@@ -140,6 +144,10 @@
 
       twin.state = this.publishMessage(twin.state, trytes)
       this.$parent.twins[this.$parent.actingAs] = twin
+
+    },
+
+    requestAsset: function() {
 
     }
   }

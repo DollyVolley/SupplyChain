@@ -9,6 +9,7 @@
         <app-controller class="container controller"></app-controller>
       </div>
       <app-concept id="concept"></app-concept>
+      <app-learn-more id="learn-more"></app-learn-more>
 
       <app-footer id="footer"></app-footer>
     </div>
