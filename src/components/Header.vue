@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <div class="container-fluid title">
-      <h1 class="display-4">Supply Chain Simulator</h1>
+      <h1 class="title">Supply Chain Simulator</h1>
       <h1 class="git_link">
         <a>
         </a>
@@ -11,10 +11,10 @@
 
     <div class="subtilte">
       <div class="btn-group">
-        <button class="btn btn-default"><a>Simulation</a></button>
-        <button class="btn btn-default"><a>Concept</a></button>
-        <button class="btn btn-default"><a>About</a></button>
-        <button class="btn btn-default"><a>Contact</a></button>
+        <button class="btn btn-default"><a href="https://dollyvolley.com/#Simulation">Simulation</a></button>
+        <button class="btn btn-default"><a href="https://dollyvolley.com/#GettingStarted">Getting Started</a></button>
+        <button class="btn btn-default"><a href="https://dollyvolley.com/#About">About</a></button>
+        <button class="btn btn-default"><a href="https://dollyvolley.com/#Contact">Contact</a></button>
       </div>
     </div>
   </div>
@@ -27,7 +27,7 @@
 <style scoped>
 
   .header {
-    background: #aeafaf;
+    background: #578AFE;
     width: 100%;
   }
 
@@ -38,39 +38,37 @@
   .btn-group {
     width: 100%;
     justify-content: space-evenly;
-
-
   }
 
   .btn-group .btn {
     width: 25%;
+  }
 
-
+  h1 {
+    font-family: 'Source Sans Pro', sans-serif;
   }
 
   button {
-    background: transparent;
+    background: #4060AB;
     border: none;
     width:inherit;
     color: white;
   }
 
   button:hover {
-    background: white;
+    background: transparent;
     border: none;
-    color: #aeafaf;
+    color: white;
   }
 
   .title {
     height: 13vh;
-    padding-top: 0.8em;
-    padding-left: 4em;
+    padding-top: 0.4em;
+    padding-left: 2em;
     text-align: left;
     display: flex;
     color: white;
-    font-style: italic;
     font-size: 40pt;
-
   }
   .subtext {
     font-size: 15pt;

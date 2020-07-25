@@ -19,10 +19,14 @@ npm run dev
 
 Planned
 - transfer asset
+- "dissmiss" state transmission.
+- filter dashboard (dismissed=?, owner=?, )
+- listen on assets (maybe it works for non-author posts -> auto transfer)
 - refactor
 - efficient data handling with the tangle
 - ownership graph.
 - exchange view in overview (if it origins from another twin instance)
+- Chronicle for persistent data
 
 Planned B (if the client library gets obsolete with the Chrysalis update)
 - Make rust streams implementation as api server.

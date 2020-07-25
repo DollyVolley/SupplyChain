@@ -2,7 +2,7 @@
     <div class="footer">
       <div>
         <div class="footer-content">
-            <a src="not.yet">Github Code</a>
+            dollyvolley.com
         </div>
         <div class="footer-content">
         </div>

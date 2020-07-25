@@ -7,7 +7,7 @@
           <br>
           <input type="text"  v-model="twinNameInput" placeholder="Rocket #42" v-on:keyup.enter="createTwin">
           <br>
-          <button v-on:click="createTwin" >Create Twin</button>
+          <button v-on:click="createTwin" class="btn-outline-primary btn btn-sm">Create Twin</button>
         </div>
         <div class="list-group-item card">
           <h3>Attach Measurement</h3>
@@ -15,7 +15,7 @@
           <br>
           <input type="text"  v-model="twinMeasurementInput" placeholder="243.76" v-on:keyup.enter="attachMeasurement">
           <br>
-          <button v-on:click="attachMeasurement" >Attach Measurement</button>
+          <button v-on:click="attachMeasurement" class="btn-outline-primary btn btn-sm">Attach Measurement</button>
         </div>
         <div class="list-group-item card">
           <h3>Create Transfer Request</h3>
@@ -23,7 +23,7 @@
           <br>
           <input type="text"  v-model="twinTransferRequestInput" placeholder="DYBVDOBVTIRLM....." v-on:keyup.enter="createTwin" class="right">
           <br>
-          <button v-on:click="createTwin" >Request Transfer</button>
+          <button v-on:click="createTwin" class="btn-outline-primary btn btn-sm">Request Transfer</button>
         </div>
         <div class="list-group-item card">
           <h3>Approve Transfer</h3>
@@ -32,7 +32,7 @@
           <br>
           <input type="text"  v-model="twinTransferAcceptInput" placeholder="DYBVDOBVTIRLM....." v-on:keyup.enter="createTwin" class="right">
           <br>
-          <button v-on:click="createTwin" >Approve Transfer</button>
+          <button v-on:click="createTwin" class="btn-outline-primary btn btn-sm">Approve Transfer</button>
         </div>
       </div>
   </div>
@@ -106,6 +106,12 @@ export default {
       if (twin == null) {
         console.error("Please select a twin!")
         alert("\"Please select a twin!")
+        return 1
+      }
+
+      if (twin.data.owner !== this.$parent.actingAs) {
+        console.error("Not the owner of this asset.")
+        alert("\"Not allowed! Only the owner is able to see the necessary data in order to advance the state.")
         return 1
       }
 
