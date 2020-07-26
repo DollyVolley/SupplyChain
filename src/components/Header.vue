@@ -8,9 +8,9 @@
       </h1>
     </div>
 
-    <div class="btn-group">
+    <div class="btn-goup">
       <a href="https://dollyvolley.com/#GettingStarted"><div class="btn1">Gotting Started</div></a>
-      <a href="https://dollyvolley.com/#GettingStarted"><div class="btn1">Learn more</div></a>
+      <a href="https://dollyvolley.com/#learn-more"><div class="btn1">Learn more</div></a>
       <a href="https://dollyvolley.com/#About"><div class="btn1">About</div></a>
     </div>
   </div>
@@ -23,7 +23,7 @@
 <style scoped>
 
   .header {
-    background: #578AFE;
+    background: #345695;
     width: 100%;
   }
 
@@ -31,22 +31,21 @@
     margin-top: 1em;
     width: 100%;
     text-decoration: none;
-    font-size: 18pt;
+    font-size: 15pt;
   }
 
 
-  .btn-group {
+  .btn-goup {
     clear: both;
     width: 100%;
-    height: 2em;
-
     justify-content: space-evenly;
   }
 
   .btn1 {
-    background: #345695;
-
-    width: 100%;
+    background: transparent;
+    width: 33.333%;
+    height: 1em;
+    float:left;
     position: relative;
     border: none;
     color: white;
@@ -54,18 +53,13 @@
   }
 
   .btn1:hover{
-    background: transparent;
-    border: none;
+    border-top: solid;
+    border-color: white;
     color: white;
   }
 
-
-  h1 {
-    font-family: 'Source Sans Pro', sans-serif;
-  }
-
   .title {
-    height: 11.8vh;
+    height: 15vh;
     padding-top: 0.4em;
     padding-left: 2em;
     text-align: left;

@@ -21,3 +21,61 @@ MAM mode:
 public, private or restricted
 
 
+
+
+Notes:
+
+{
+   "state":null,
+   "root":"CMK9JVTXNRLNCZWZKTBRCGRVZGLEMEZYWGQUEGQKNCSE9RWYDRNWLYQWXJRWOMKUCPPGEAIFFXVZTVBMF",
+   "data":{
+      "name":"asdf",
+      "owner":"Supplier",
+      "data_points":[
+
+      ],
+      "create_date":"2020-07-25"
+   }
+}
+
+
+
+
+<template>
+    <div class="container-fluid">
+          <div>
+            <label>
+            </label>
+          </div>
+            <app-twincard class="float"
+                v-for="(item, i) in $parent.twins"
+                v-bind:twin="item"
+                v-bind:key="i"
+                :class="{active: i === $parent.activeItem}"
+                @click.native="select(i)"
+            ></app-twincard>
+    </div>
+</template>
+
+<script>
+export default {
+  props: ["twin"],
+  methods: {
+    select: function(i) {
+      console.debug("Selected Twdin Index: " + i)
+      this.$parent.activeItem = i;
+    },
+
+  }
+}
+</script>
+
+<style scoped>
+
+  .float {
+    float: left;
+    width: 250px;
+    margin: 0.75em;
+  }
+
+</style>

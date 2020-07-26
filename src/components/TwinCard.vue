@@ -43,12 +43,10 @@
 
 
       <div class="bottom">
-          <button  class="bottom" v-on:click=copyToClipboard>
           <div class="root-container">
             <p class="meta2">Root:</p>
-            <p class="root">{{ twin.root }}</p>
+            <div class="root">{{ twin.root }}</div>
           </div>
-        </button>
       </div>
     </div>
 </template>
@@ -77,10 +75,6 @@ export default {
     border-color: #5e5e5e;
   }
 
-  .hr {
-    margin-top: 5px;
-  }
-
   .head {
     padding-top: 10px;
     text-align: center;
@@ -93,7 +87,7 @@ export default {
 
   .row {
     width: 100%;
-    padding: 0 0 10px 10px;
+    padding-left: 30px;
   }
 
   .row:after {
@@ -139,6 +133,7 @@ export default {
     padding:0;
     margin:0;
     width: 100%;
+    justify-content: center;
   }
 
   .root {

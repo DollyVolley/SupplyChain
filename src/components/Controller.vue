@@ -2,37 +2,35 @@
   <div>
       <div class="list-group">
         <div class="list-group-item card">
-          <h3>Create Twin</h3>
+          <h3>Create Twin <div class="info-bar"><a href="https://dollyvolley.com/#learn-more"><p>?</p></a></div></h3>
           <label>Name:</label>
           <br>
-          <input type="text"  v-model="twinNameInput" placeholder="Rocket #42" v-on:keyup.enter="createTwin">
+          <input type="text" v-model="assetName" placeholder="Rocket #42" v-on:keyup.enter="createTwin">
           <br>
           <button v-on:click="createTwin" class="btn-outline-primary btn btn-sm">Create Twin</button>
         </div>
         <div class="list-group-item card">
-          <h3>Attach Measurement</h3>
+          <h3>Attach Measurement <div class="info-bar"><a href="https://dollyvolley.com/#learn-more"><p>?</p></a></div></h3>
           <label>Capacity [mAh]:</label>
           <br>
-          <input type="text"  v-model="twinMeasurementInput" placeholder="243.76" v-on:keyup.enter="attachMeasurement">
+          <input type="text" v-model="assetMeasurementValue" placeholder="243.76" v-on:keyup.enter="attachMeasurement">
           <br>
           <button v-on:click="attachMeasurement" class="btn-outline-primary btn btn-sm">Attach Measurement</button>
         </div>
         <div class="list-group-item card">
-          <h3>Create Transfer Request</h3>
-            Please select the prepared receiver object!
-            <a href="https://dollyvolley.com/#learn-more">Learn More</a>
-          <p>How does this work?</p>
+          <h3>Create Transfer Request <div class="info-bar"><a href="https://dollyvolley.com/#learn-more"><p>?</p></a></div></h3>
+            <p>Please select the prepared receiver object!<p></p>
           <br>
-          <input type="text"  v-model="twinTransferRequestInput" placeholder="DYBVDOBVTIRLM....." v-on:keyup.enter="createTwin" class="right">
+          <input type="text" v-model="originAssetRoot" placeholder="DYBVDOBVTIRLM....." v-on:keyup.enter="createTwin" class="right">
           <br>
-          <button v-on:click="createTwin" class="btn-outline-primary btn btn-sm" disabled>Request Transfer</button>
+          <button v-on:click="requestAsset" class="btn-outline-primary btn btn-sm">Request Transfer</button>
         </div>
         <div class="list-group-item card">
-          <h3>Approve Transfer</h3>
+          <h3>Approve Transfer <div class="info-bar"><a href="https://dollyvolley.com/#learn-more"><p>?</p></a></div></h3>
           <br>
           <label>Root of new owner:</label>
           <br>
-          <input type="text"  v-model="twinTransferAcceptInput" placeholder="DYBVDOBVTIRLM....." v-on:keyup.enter="createTwin" class="right">
+          <input type="text" v-model="targetAssetRoot" placeholder="DYBVDOBVTIRLM....." v-on:keyup.enter="createTwin" class="right">
           <br>
           <button v-on:click="createTwin" class="btn-outline-primary btn btn-sm" disabled>Approve Transfer</button>
         </div>
@@ -47,10 +45,10 @@
   export default {
   data() {
     return {
-      twinNameInput: '',
-      twinMeasurementInput: '',
-      twinTransferRequestInput: '',
-      twinTransferAcceptInput: '',
+      assetName: '',
+      assetMeasurementValue: '',
+      originAssetRoot: '',
+      targetAssetRoot: '',
     }
   },
   methods: {
@@ -73,7 +71,7 @@
         return 1
       }
 
-      let name = this.twinNameInput
+      let name = this.assetName
       if (!name) {
         console.error("No name typed!")
         alert("Twins also deserve names! Please type one.")
@@ -83,7 +81,7 @@
       let mamState = Mam.init(Consts.IOTA_NODE_URL)
       let root = Mam.getRoot(mamState)
 
-      let twin = {
+      let asset = {
         state: null,
         root: root,
         data: {
@@ -94,30 +92,40 @@
         }
       }
 
-      var data = JSON.stringify(twin.data)
+      const createMessage = {
+        create : {
+          data : asset.data,
+          // Extend with parameters such as:
+          // current state: as deterministic transition state condition
+          // Fee:
+        }
+      }
+
+
+      var data = JSON.stringify(createMessage)
       var trytes = Converter.asciiToTrytes(data);
 
-      twin.state  = this.publishMessage(mamState, trytes)
-      this.$parent.twins.push(twin)
+      asset.state  = this.publishMessage(mamState, trytes)
+      this.$parent.twins.push(asset)
       return true
     },
 
     attachMeasurement:  function () {
-      let twin = this.$parent.twins[this.$parent.activeItem]
+      let asset = this.$parent.twins[this.$parent.activeItem]
 
-      if (twin == null) {
-        console.error("Please select a twin!")
-        alert("\"Please select a twin!")
+      if (asset == null) {
+        console.error("Please select a asset!")
+        alert("\"Please select a asset!")
         return 1
       }
 
-      if (twin.data.owner !== this.$parent.actingAs) {
+      if (asset.data.owner !== this.$parent.actingAs) {
         console.error("Not the owner of this asset.")
         alert("\"Not allowed! Only the owner is able to see the necessary data in order to advance the state.")
         return 1
       }
 
-      if (!this.twinMeasurementInput) {
+      if (!this.assetMeasurementValue) {
         console.error("Please enter a measure")
         alert("\"A measure would be nice!")
         return 1
@@ -128,48 +136,112 @@
         return 1
       }
 
-
-      if (twin.data.data_points) {
+      if (asset.data.data_points) {
         var data_point = {
-          value: this.twinMeasurementInput,
+          value: this.assetMeasurementValue,
           time_stamp: new Date().toLocaleString()
         }
-        twin.data.data_points.push(data_point)
+        asset.data.data_points.push(data_point)
       }else {
-        twin["data_points"] = this.twinMeasurementInput
+        asset.data["data_points"] = this.assetMeasurementValue
       }
 
-      const data = JSON.stringify(twin.data)
+      const stateUpdate = {
+        state_update : {
+          data : asset.data,
+        }
+      }
+
+      const data = JSON.stringify(stateUpdate)
       const trytes = Converter.asciiToTrytes(data);
 
-      twin.state = this.publishMessage(twin.state, trytes)
-      this.$parent.twins[this.$parent.actingAs] = twin
+      asset.state = this.publishMessage(asset.state, trytes)
+      this.$parent.twins[this.$parent.actingAs] = asset
 
     },
 
     requestAsset: function() {
+      let asset = this.$parent.twins[this.$parent.activeItem]
 
+      if (asset == null) {
+        console.error("Please select a asset!")
+        alert("\"Please select a asset!")
+        return 1
+      }
+
+      if (asset.data.owner !== this.$parent.actingAs) {
+        console.error("You need to select your clone!")
+        alert("\"You need to select your clone!")
+        return 1
+      }
+
+      if (!this.originAssetRoot) {
+        console.error("You need to provide the root of the asset you want to request!")
+        alert("\"You need to provide the root of the asset you want to request!")
+        return 1
+      }
+
+      const requestMessage = {
+        request : {
+          transfer : {
+            origin: this.originAssetRoot,
+            target: asset.root
+          }
+
+          // Extend with parameters such as:
+          // current state: as deterministic transition state condition
+          // Fee:
+        }
+      }
+      console.log(JSON.stringify(requestMessage))
+
+      const data = JSON.stringify(requestMessage)
+      const trytes = Converter.asciiToTrytes(data);
+
+      asset.state = this.publishMessage(asset.state, trytes)
+      this.$parent.twins[this.$parent.actingAs] = asset
     }
   }
 }
 </script>
 
 <style>
-
   button {
     margin-top: 15px;
   }
 
-  .title{
-      text-align: center;
-      font-size: 25pt;
-      padding-bottom: 1em;
-  }
-
   .card {
-      margin: 1em;
+    margin: 1em;
   }
 
+  /* Info Bar down here*/
+  a {
+    font-size: 20pt;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 30px;
+  }
+
+  a:hover {
+    color: white;
+    text-decoration: none;
+  }
+
+  .info-bar {
+    height: 30px;
+    width: 30px;
+    float: right;
+    margin-bottom: 15px;
+    background: #578AFE;
+    border-radius: 20px;
+
+  }
+
+  .info-bar:hover{
+    background: #345695;
+  }
 
 
 </style>

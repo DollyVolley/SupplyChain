@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <app-header class="header"></app-header>
-    <div class="container-fluid">
+    <div class="container-fluid fullgas">
 
       <app-menu-bar id="simulation" class="bar-menu"></app-menu-bar>
       <div class="main-window">
@@ -10,8 +10,7 @@
       </div>
       <app-concept id="concept"></app-concept>
       <app-learn-more id="learn-more"></app-learn-more>
-
-      <app-footer id="footer"></app-footer>
+      <app-footer id="footer about"></app-footer>
     </div>
   </div>
 </template>
@@ -55,14 +54,18 @@ div {
   width: 30%;
   float: right;
   display: grid;
-
   border: black 4px;
 }
 
 #concept {
   width: 100%;
-  height:130%;
+  height:1500px;
 }
+
+.fullgas {
+  padding: 0;
+}
+
 a {
   color:inherit;
   text-decoration: none;

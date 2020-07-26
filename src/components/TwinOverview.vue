@@ -5,7 +5,7 @@
             </label>
           </div>
             <app-twincard class="float"
-                v-for="(item, i ) in $parent.twins"
+                v-for="(item, i) in $parent.twins"
                 v-bind:twin="item"
                 v-bind:key="i"
                 :class="{active: i === $parent.activeItem}"
@@ -17,12 +17,6 @@
 <script>
 export default {
   props: ["twin"],
-  data: function() {
-    return {
-      root: "",
-      rootExplURL: ""
-    }
-  },
   methods: {
     select: function(i) {
       console.debug("Selected Twdin Index: " + i)
@@ -34,12 +28,6 @@ export default {
 </script>
 
 <style scoped>
-
-  .title{
-    text-align: center;
-    font-size: 25pt;
-    padding-bottom: 1em;
-  }
 
   .float {
     float: left;
