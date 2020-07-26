@@ -13,7 +13,7 @@
     </div>
     <div Style="clear:both"></div>
     <div class="tangleexplorer">
-      <label>Track asset with </label>
+      <label>Track asset with    </label>
       <button v-on:click=openOnTangleExplorer type="button" class="btn-outline-primary btn btn-sm"
       title="Select a asset to verificate it on ...">Tangle Explorer</button>
     </div>

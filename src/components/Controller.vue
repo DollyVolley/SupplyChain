@@ -2,7 +2,8 @@
   <div>
       <div class="list-group">
         <div class="list-group-item card">
-          <h3>Create Twin <div class="info-bar"><a href="https://dollyvolley.com/#learn-more"><p>?</p></a></div></h3>
+          <h3>Create Twin <div class="info-bar"><a href="https://dollyvolley.com/#CreateFirstAssetHelp"><p>?</p></a></div></h3>
+          <br>
           <label>Name:</label>
           <br>
           <input type="text" v-model="assetName" placeholder="Rocket #42" v-on:keyup.enter="createTwin">
@@ -10,7 +11,9 @@
           <button v-on:click="createTwin" class="btn-outline-primary btn btn-sm">Create Twin</button>
         </div>
         <div class="list-group-item card">
-          <h3>Attach Measurement <div class="info-bar"><a href="https://dollyvolley.com/#learn-more"><p>?</p></a></div></h3>
+          <h3>Attach Measurement <div class="info-bar"><a href="https://dollyvolley.com/#AttachMeasurementHelp"><p>?</p></a></div></h3>
+          <p>Please select the asset!<p></p>
+          <br>
           <label>Capacity [mAh]:</label>
           <br>
           <input type="text" v-model="assetMeasurementValue" placeholder="243.76" v-on:keyup.enter="attachMeasurement">
@@ -19,7 +22,7 @@
         </div>
         <div class="list-group-item card">
           <h3>Request Transfer [TODO] <div class="info-bar"><a href="https://dollyvolley.com/#learn-more"><p>?</p></a></div></h3>
-            <p>Please select the prepared receiver object!<p></p>
+            <p>Please select the prepared receiver asset!<p></p>
           <br>
           <input type="text" v-model="originAssetRoot" placeholder="DYBVDOBVTIRLM....." v-on:keyup.enter="createTwin" class="right">
           <br>
@@ -27,6 +30,7 @@
         </div>
         <div class="list-group-item card">
           <h3>Approve Transfer [TODO] <div class="info-bar"><a href="https://dollyvolley.com/#learn-more"><p>?</p></a></div></h3>
+          <p>Please select the asset you want to transfer!<p></p>
           <br>
           <label>Root of new owner:</label>
           <br>
@@ -236,7 +240,6 @@
     margin-bottom: 15px;
     background: #578AFE;
     border-radius: 20px;
-
   }
 
   .info-bar:hover{

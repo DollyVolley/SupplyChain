@@ -41,7 +41,7 @@ div {
 }
 
 .main-window {
-  height: 100vh;
+  min-height: 1100px;
 }
 
 .overview {
@@ -59,7 +59,7 @@ div {
 
 #concept {
   width: 100%;
-  height:1500px;
+  min-height:1500px;
 }
 
 .fullgas {

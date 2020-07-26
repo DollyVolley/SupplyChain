@@ -12,29 +12,27 @@
           All states and references are stored on the Tangle.
         </p>
         <br>
-        <h3 class="subheader">1. Create your first Asset</h3>
-        <p>
-          This is a small tool showing a way of how to implement a supply-chain on IOTAs Tangle. It serves as a
-          tracker of digital twins, which for each only one owner at a time exists.
-
-          First you need to do the work of the creator - on the top bar select "Supplier".
+        <h3 class="subheader" id="CreateFirstAssetHelp">1. Create your first Asset</h3>
+        <p>First you need to do the work of the creator - on the top bar select "Supplier".
           To create an asset give it the name of your desire in the "Create Twin" command box.
 
-          When you click on the button, a digital twin is posted on the Tangle. The fresh twin is now shown in the dashboard.
-          Click on it in order to select it and use it in further steps.
+          When you click on the button, a digital twin is posted on the Tangle. It marks the start of the channel
+          which will from now on track the state of the asset. The fresh twin is now shown in the dashboard.
         </p>
-        <br>
-        <h3 class="subheader">2. Alter the Assets State</h3>
-        <p>The owner is the only one who can attach further data or transfer the asset.
-          You can try this out by using the "Attach Measurement" interface.
-          This will create a new transaction, linked to the predecessor and authenticated.
-          There are many ways to implement it at this level, but either way, it is a cryptographically
-          secured stream. This property is a building block for features like audits.</p>
         <hr>
-          Notice: In order to be really safe and control who is able to see which data, the implementation of another
-          IOTA MAM mode is necessary.
+        Notice: The channel for this twin is public. <a href="https://dollyvolley.com/#privacy_faq">What are modes?</a>
         <br>
         <br>
+
+        <br>
+        <h3 class="subheader" id="AttachMeasurementHelp">2. Alter the Assets State</h3>
+        <p>The owner is the only one who can attach further data or transfer the asset.
+          You can try this out by using the "Attach Measurement" operation. Click on an asset to select it
+          and enter the metric or data you want to attach.
+
+          This will create a new transaction, linked to the previous state.
+          There are many ways to implement it at this level, but either way, it is a cryptographically
+          secured stream.</p>
 
         <br>
         <h3 class="subheader">3. Verify it</h3>
