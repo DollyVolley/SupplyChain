@@ -41,8 +41,6 @@
       This is of course unidirectional, but it can be extended by using a either an standardized*link* or some
       custom communication protocol. In theory the limitations would be a fully connected network with no theoretical
       limitations. Everyone can follow every channel of which he knows the root and the side key if necessary.
-
-
     </p>
 
     <br>
@@ -52,6 +50,15 @@
       This makes sense when aggregating data which can then be used for monitoring and even alarm you about escalation
       processes or quality metrics. e.g. with Prometheus + Grafana and Alert Notifications.
       Break your data silos!
+    </p>
+
+    <br>
+    <h3 class="subtitle">My view on it [TODO]</h3>
+    <br>
+    <p>It implements in a communication way more features than e.g. Hyperledger Fabric. But it is much more distributed,
+      and still a lean base layer. Everyone who worked with Fabric knows what I mean by that.
+      It allows frictionless secure communication framework which additionally provides strong features to build on top.
+      Transparency is key and therefor it is crucial to go permissionless.
     </p>
   </div>
 </template>
