@@ -67,8 +67,8 @@
     <br>
     <p>This is of course unidirectional, but it can be extended by using a either a standard
       (<a href="https://eclass.iota.org/">eCl@ass</a> / <a href="https://iota-einsteiger-guide.de/object-management-group-omg.html>eCl@ass">OMG</a>)
-      or a custom communication protocol. In theory the limitations would be a fully connected network with no theoretical
-      limitations. Everyone can follow every channel of which he knows the root and the side key if necessary.
+      or a custom communication protocol. In theory there limitations and a fully connected network is possible.
+      Everyone can follow every channel of which he knows the root and the side key if necessary.
       Therefor theoretically even a fully connected network as layer on top of MAM/Streams is possible.
     </p>
 

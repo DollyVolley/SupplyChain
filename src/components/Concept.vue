@@ -35,7 +35,7 @@
           secured stream.</p>
 
         <br>
-        <h3 class="subheader">3. Verify it</h3>
+        <h3 class="subheader" id="verify">3. Verify it</h3>
         <p>Your twin has just completed his first steps - at least that's what I am showing you.
           But you don't trust no single authority - do you? Check out the committed states of a selected asset by
           using the "Tangle Explorer" button. All that's left to do is, give it a look!
@@ -46,7 +46,7 @@
         </p>
 
         <br>
-        <h3 class="subheader">4. Get that asset</h3>
+        <h3 class="subheader" id="RequestAssetHelp">4. Get that asset</h3>
         <p>Your asset is ready for transfer. You need to get an offer in order to close the deal.
 
           Now is the time to switch the roles and be the one who implements this recently created asset.
@@ -64,7 +64,7 @@
 
         <br>
 
-        <h3 class="subheader">5. Transfer Ownership</h3>
+        <h3 class="subheader" id="TransferAssetHelp">5. Transfer Ownership</h3>
         <p>Switch into the "Supplier" role again and close the deal. Identify the request document and if you confirm,
           copy the root of it and paste it into the "Approve Transfer" field. The moment you hit that button, there is no
           way of retrieving it, if done in direct way.

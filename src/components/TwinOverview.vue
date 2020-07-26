@@ -19,7 +19,11 @@ export default {
   props: ["twin"],
   methods: {
     select: function(i) {
-      console.debug("Selected Twdin Index: " + i)
+      console.debug("Selected twin Index: " + i)
+      if(this.$parent.twins[i].pending) {
+        console.error("Object pending, can not select it")
+        return 1
+      }
       this.$parent.activeItem = i;
     },
 
