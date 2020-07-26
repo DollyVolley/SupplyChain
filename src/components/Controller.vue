@@ -18,7 +18,7 @@
           <button v-on:click="attachMeasurement" class="btn-outline-primary btn btn-sm">Attach Measurement</button>
         </div>
         <div class="list-group-item card">
-          <h3>Create Transfer Request <div class="info-bar"><a href="https://dollyvolley.com/#learn-more"><p>?</p></a></div></h3>
+          <h3>Request Transfer [TODO] <div class="info-bar"><a href="https://dollyvolley.com/#learn-more"><p>?</p></a></div></h3>
             <p>Please select the prepared receiver object!<p></p>
           <br>
           <input type="text" v-model="originAssetRoot" placeholder="DYBVDOBVTIRLM....." v-on:keyup.enter="createTwin" class="right">
@@ -26,7 +26,7 @@
           <button v-on:click="requestAsset" class="btn-outline-primary btn btn-sm">Request Transfer</button>
         </div>
         <div class="list-group-item card">
-          <h3>Approve Transfer <div class="info-bar"><a href="https://dollyvolley.com/#learn-more"><p>?</p></a></div></h3>
+          <h3>Approve Transfer [TODO] <div class="info-bar"><a href="https://dollyvolley.com/#learn-more"><p>?</p></a></div></h3>
           <br>
           <label>Root of new owner:</label>
           <br>

@@ -21,12 +21,37 @@
       or just drop the idea of a network as a storage device. The owner is verifiable using the signature every messages of
       his channel. These messages also contain timestamp and sequence number. Therefore we just need to fetch the
       MAM messages from the Tangle and evaluate the payload in sequence order and save it afterwards to a database or your own solution.
+      This means already via using the Streams/MAM protocol data integrity and authenticity are given.
     </p>
     <br>
-    <h3 class="subtitle">More topics to come here!</h3>
+    <h3 class="subtitle">Choose who can see what [TODO]</h3>
     <br>
-    <p>
+    <p>basic way mam/streams work. random and secure. one way linking.
+      different modes.
 
+    </p>
+
+    <br>
+    <h3 class="subtitle">Push the limits [TODO]</h3>
+    <br>
+    <p> Using message headers, it allows one to kind of tag the message and make it routable after reception.
+      This means in the same channel the data is send, also the business logic can flow. Coupled with a header
+      based encryption method.
+
+      This is of course unidirectional, but it can be extended by using a either an standardized*link* or some
+      custom communication protocol. In theory the limitations would be a fully connected network with no theoretical
+      limitations. Everyone can follow every channel of which he knows the root and the side key if necessary.
+
+
+    </p>
+
+    <br>
+    <h3 class="subtitle">Close the circle</h3>
+    <br>
+    <p> As with most established DLTs you can utilize listeners to implement push messages.
+      This makes sense when aggregating data which can then be used for monitoring and even alarm you about escalation
+      processes or quality metrics. e.g. with Prometheus + Grafana and Alert Notifications.
+      Break your data silos!
     </p>
   </div>
 </template>
@@ -50,7 +75,7 @@
 
   #learn-more {
     width: 100%;
-    height:80vh;
+    height:120vh;
     background: #345695;
     background-image: linear-gradient(#345695, #274371);
     padding: 40px;

@@ -1,6 +1,7 @@
 <template>
   <div class="wrapper">
     <hr>
+
     <div Style="clear:both"></div>
     <div class="simulatorMenuItem">
       <select class="selecto" v-model="$parent.actingAs">
