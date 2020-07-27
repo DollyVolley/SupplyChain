@@ -1,8 +1,15 @@
 <template>
     <div class="wrapper">
-      <div class="mainconent" :class="{pending: twin.pending, terminated: twin.terminated}">
+      <div :class="{terminated: twin.terminated}">
+      <div class="mainconent" :class="{pending: twin.pending}">
         <div class="head">
-          <p class="name">{{ twin.data.name }}</p>
+          <div class="status" v-if="twin.terminated">
+            <p class="name" >Channel terminated</p>
+          </div>
+          <div class="status" v-if="twin.pending">
+            <p class="name" >Request Pending</p>
+          </div>
+          <p class="name">{{ twin.data.name}}</p>
         </div>
 
         <div class="row">
@@ -49,6 +56,7 @@
             <p class="meta2">Root:</p>
             <div class="root">{{ twin.root }}</div>
           </div>
+      </div>
       </div>
     </div>
 </template>
@@ -136,6 +144,10 @@ export default {
     margin: 0;
   }
 
+  .status {
+    text-decoration: yellow;
+  }
+
   .pending {
     background: #f3fa8e;
     pointer-events: none;
@@ -143,9 +155,10 @@ export default {
   }
 
   .terminated {
+    background: #cccccc;
     pointer-events: none;
-    padding-bottom: 10px;
     color: #5c5c5c;
+    width: 100%;
   }
 
 

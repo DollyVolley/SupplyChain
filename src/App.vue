@@ -59,7 +59,7 @@ div {
 
 #concept {
   width: 100%;
-  min-height:1500px;
+  min-height:1700px;
 }
 
 .fullgas {

@@ -20,7 +20,7 @@ export default {
   methods: {
     select: function(i) {
       console.debug("Selected twin Index: " + i)
-      if(this.$parent.twins[i].pending) {
+      if(this.$parent.twins[i].pending || this.$parent.twins[i].terminated)  {
         console.error("Object pending, can not select it")
         return 1
       }

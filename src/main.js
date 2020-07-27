@@ -23,7 +23,6 @@ Vue.component('app-menu-bar', MenuBar)
 
 document.title = "Supply Chain"
 
-
 new Vue({
   el: '#app',
   render: h => h(App)
