@@ -12,7 +12,7 @@
         <div class="list-group-item card">
           <h3>Attach Measurement <div class="info-bar"><a href="https://dollyvolley.com/#AttachMeasurementHelp"><p>?</p></a></div></h3>
           <p>Please select the asset!<p></p>
-          <label>Capacity [mAh]:</label>
+          <label>Value:</label>
           <br>
           <input type="text" v-model="assetMeasurementValue" placeholder="243.76" v-on:keyup.enter="attachMeasurement">
           <br>
@@ -95,11 +95,12 @@
       let root = Mam.getRoot(mamState)
 
       let asset = {
+        id: this.$parent.getNextID(),
         state: null,
         root: root,
-        prev_root: null,
         pending: false,
         terminated: false,
+        prev_root: null,
         data: {
           name: name,
           owner: owner,
@@ -121,7 +122,8 @@
       var trytes = Converter.asciiToTrytes(data);
 
       asset.state  = this.publishMessage(mamState, trytes)
-      this.$parent.twins.push(asset)
+      this.$parent.twins[asset.id] = asset
+
       return true
     },
 

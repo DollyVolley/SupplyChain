@@ -65,11 +65,12 @@
     <br>
     <h3 class="subtitle">Close the circle</h3>
     <br>
-    <p>This is of course unidirectional, but it can be extended by using a either a standard
-      (<a href="https://eclass.iota.org/">eCl@ass</a> / <a href="https://iota-einsteiger-guide.de/object-management-group-omg.html>eCl@ass">OMG</a>)
-      or a custom communication protocol. In theory there limitations and a fully connected network is possible.
-      Everyone can follow every channel of which he knows the root and the side key if necessary.
-      Therefor theoretically even a fully connected network as layer on top of MAM/Streams is possible.
+    <p>For communication a protocol is needed, either a custom or standardized
+      (<a href="https://eclass.iota.org/">eCl@ass</a> / <a href="https://iota-einsteiger-guide.de/object-management-group-omg.html>eCl@ass">OMG</a>) .
+      With a third layer protocol, on top of MAM/Streams which could orchestrate a fully connected network of supply chain members.
+      Everyone can follow every channel of which he knows the root and the side key if necessary. So these networks coud
+      be public or permissioned. Building consensus on this layer for business logic is simplified because it is in
+      general just a voting. The trust is brought by the layers below.
     </p>
 
     <br>

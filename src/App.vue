@@ -19,10 +19,18 @@
 export default {
   data () {
     return {
-      twins: [],
+      twins: {},
       twinNameInput: "",
       actingAs: "",
-      activeItem: null
+      activeItem: null,
+      nextID: 0,
+    }
+  },
+  methods: {
+    getNextID: function() {
+      let ret = this.nextID;
+      this.nextID = ret + 1;
+      return ret ;
     }
   }
 }
