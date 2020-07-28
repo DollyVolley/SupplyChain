@@ -92,6 +92,7 @@
       }
 
       let mamState = Mam.init(Consts.IOTA_NODE_URL)
+      console.log(JSON.stringify(mamState))
       let root = Mam.getRoot(mamState)
 
       let asset_id = this.$parent.getNextID()
