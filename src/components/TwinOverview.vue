@@ -6,7 +6,7 @@
     </div>
     <app-twincard class="float"
                   v-for="(item, i) in $parent.twins"
-                  v-bind:twin="item.value"
+                  v-bind:twin="item"
                   v-bind:key="i"
                   :class="{active: i === $parent.activeItem}"
                   @click.native="select(i)"
@@ -21,12 +21,11 @@
       select: function(i) {
         console.debug("Selected twin Index: " + i)
         if(this.$parent.twins[i].pending || this.$parent.twins[i].terminated)  {
-          console.error("Object psending, can not select it")
+          console.error("Object pending, can not select it")
           return 1
         }
         this.$parent.activeItem = i;
       },
-
     }
   }
 </script>

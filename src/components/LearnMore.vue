@@ -22,7 +22,7 @@
       <a href="https://www.iota-wiki.com/de/#Was_ist_ein_Snapshot">Snapshot</a> where it gets
       pruned on the node. One could bypass this by using <a href="https://docs.iota.org/docs/chronicle/1.0/overview">Chronicle</a>
       or just drop the idea of a network as a storage device. The message owner is verifiable using the signature contained in
-      the message. These messages also contain a timestamp and a sequence number. Therefore we just need to fetch the
+      the message. These messages also contain timestamp and sequence number. Therefore we just need to fetch the
       MAM messages from the Tangle and evaluate the payload in sequence order and save it afterwards to a database or your own solution.
       This means already via using the Streams/MAM protocol data integrity and authenticity are given.
     </p>

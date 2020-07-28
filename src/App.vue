@@ -19,7 +19,7 @@
 export default {
   data () {
     return {
-      twins: {},
+      twins: [],
       twinNameInput: "",
       actingAs: "",
       activeItem: null,
@@ -67,7 +67,7 @@ div {
 
 #concept {
   width: 100%;
-  min-height:1700px;
+  min-height:1500px;
 }
 
 .fullgas {

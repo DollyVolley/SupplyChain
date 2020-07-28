@@ -28,7 +28,7 @@
           <button v-on:click="requestAsset" class="btn-outline-primary btn btn-sm">Request Transfer</button>
         </div>
         <div class="list-group-item card">
-          <h3>Approve Transfer<div class="info-bar"><a href="https://dollyvolley.com/#TransferAssetHelp"><p>?</p></a></div></h3>
+          <h3>Approve Transfer [TODO]<div class="info-bar"><a href="https://dollyvolley.com/#TransferAssetHelp"><p>?</p></a></div></h3>
           <p>Please select the asset you want to transfer!</p>
           <label>Root of receiver asset:</label>
           <br>
@@ -94,8 +94,11 @@
       let mamState = Mam.init(Consts.IOTA_NODE_URL)
       let root = Mam.getRoot(mamState)
 
+      let asset_id = this.$parent.getNextID()
+
+      console.log("Create asset #id " + asset_id)
       let asset = {
-        id: this.$parent.getNextID(),
+        id: asset_id,
         state: null,
         root: root,
         pending: false,
@@ -122,7 +125,7 @@
       var trytes = Converter.asciiToTrytes(data);
 
       asset.state  = this.publishMessage(mamState, trytes)
-      this.$parent.twins[asset.id] = asset
+      this.$parent.twins.push(asset)
 
       return true
     },
@@ -210,6 +213,7 @@
 
       const data = JSON.stringify(requestMessage)
       const trytes = Converter.asciiToTrytes(data);
+      assetTwin.state = this.publishMessage(assetTwin.state, trytes)
 
       let messages = this.fetchChannel(assetOriginalRoot, Consts.IOTA_MAM_MODE)
       messages.then( (messages) => {
@@ -225,12 +229,9 @@
           let new_owner = assetTwin.data.owner
           assetTwin.data = state.data
           assetTwin.data.prev_owner = assetTwin.data.owner
-          assetTwin.prev_root = assetOriginalRoot
           assetTwin.data.name = new_name
           assetTwin.data.owner = new_owner
           assetTwin.pending = true
-
-          assetTwin.state = this.publishMessage(assetTwin.state, trytes)
 
           this.$parent.twins[this.$parent.activeItem] = assetTwin
         }
@@ -240,7 +241,6 @@
     approveTransfer () {
       let assetOriginal = this.$parent.twins[this.$parent.activeItem]
       let assetTargetRoot = this.targetAssetRoot
-      let actingAs = this.$parent.actingAs
 
       console.log(assetOriginal)
 
@@ -251,10 +251,10 @@
       }
 
       console.log(assetOriginal.data.owner)
-      console.log(actingAs)
+      console.log(this.$parent.actingAs)
 
 
-      if (assetOriginal.data.owner !== actingAs) {
+      if (assetOriginal.data.owner !== this.$parent.actingAs) {
         console.error("You need to select your clone!")
         alert("\"You dont have ownership over the selected asset! In production environments you would not have it's keys.")
         return 1
@@ -306,31 +306,29 @@
           const trytes = Converter.asciiToTrytes(data);
 
           let target_index = -1
+          let temp_index = 0
+          console.log(assetOriginal.root)
+          console.log(this.$parent.actingAs)
 
-          for (let i = 0; i < this.$parent.twins.length; i++) {
-            let twin = this.$parent.twins[i]
+          for (let i = 0; i < this.$parent.twins; i++) {
+            let twin = this.$parent.twins.get(i)
             console.log(JSON.stringify(twin))
-            if(twin.root === assetTargetRoot) {
+            if(twin.root === assetOriginal.root) {
               console.log("Found transfer target by root")
-              target_index = i
+              target_index =temp_index
             }
-          }
-
-          if (target_index === -1) {
-            console.log("The receiver object is not found in the local memory!")
-            alert("The receiver object is not found in the local memory!")
+            temp_index += 1
           }
 
           let target_asset = this.$parent.twins[target_index]
+          console.log(target_asset)
 
           target_asset.pending = false
-          assetOriginal.terminated = true
+
           assetOriginal.state = this.publishMessage(assetOriginal.state, trytes)
-
+          assetOriginal.terminated = true
           this.$parent.twins[this.$parent.activeItem] = assetOriginal
-          this.$parent.twins[target_index] = target_asset
-
-          console.log("Transfer Done\n")
+          console.log("done")
         }
       })
     }
