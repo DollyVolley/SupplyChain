@@ -4,14 +4,16 @@
 
     <div Style="clear:both"></div>
     <div class="simulatorMenuItem">
-      <select class="selecto" v-model="$parent.actingAs">
-        <option  disabled value="">Choose your actor!</option>
-        <option>Supplier</option>
-        <option>Producer</option>
-        <option>Customer</option>
-      </select>
+      <b-form-group>
+        <b-form-radio-group
+          id="btn-radios-1"
+          v-model="$parent.actingAs"
+          :options="options"
+          buttons
+          name="radios-btn-default"
+        ></b-form-radio-group>
+      </b-form-group>
     </div>
-    <div Style="clear:both"></div>
     <div class="tangleexplorer">
       <label>Track asset with    </label>
       <button v-on:click=openOnTangleExplorer type="button" class="btn-outline-primary btn btn-sm"
@@ -27,6 +29,10 @@
       return {
         dry_mode: "",
         channel_mode: "",
+        options: [
+          { text: 'Supplier', value: 'Supplier' },
+          { text: 'Producer', value: 'Producer' },
+          { text: 'Customer', value: 'Customer' }]
       }
     },
     methods: {

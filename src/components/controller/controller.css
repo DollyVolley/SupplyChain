@@ -1,0 +1,39 @@
+button {
+  margin-top: 15px;
+}
+
+.card {
+  margin: 1em;
+}
+
+/* Info Bar down here*/
+a {
+  font-size: 20pt;
+  text-decoration: none;
+  color: white;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 30px;
+}
+
+a:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.info-bar {
+  height: 30px;
+  width: 30px;
+  float: right;
+  margin-bottom: 15px;
+  background: #578AFE;
+  border-radius: 20px;
+}
+
+.b-tabs {
+
+}
+
+.info-bar:hover{
+  background: #345695;
+}
