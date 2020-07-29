@@ -23,37 +23,51 @@
           </div>
         </div>
 
-        <div v-if="twin.data.data_points.length" class="metrics-cont">
-          <div>
-            <div class="cont-left">
-              <p class=key>Time</p>
+        <div class="toolbox">
+          <b-button class="battn" @click="details = !details" variant="outline-dark">Details</b-button>
+          <b-button class="battn"  @click="copyRoot(twin.root)" variant="outline-dark" >Copy Root</b-button>
+        </div>
 
-            </div>
-         </div>
-            <div class="cont-right">
-              <p class="key">Value</p>
-            </div>
-         </div>
+        <div class="body" v-if="details" >
 
-        <div class="metrics-cont" v-for="metric in twin.data.data_points">
-          <div>
-            <div class="cont-left">
-              <p class="value">{{ metric.time_stamp }}</p>
-            </div>
-            <div class="cont-right">
-              <p class="value">{{ metric.value }}</p>
+          <div class="metriboard">
+            <div class="wrapper-header">
+              <div v-if="twin.data.data_points.length" class="metrics-cont">
+                <div class="cont-left">
+                  <p class=key>Time</p>
+                </div>
+                <div class="cont-right">
+                  <p class="key">Value</p>
+                </div>
+              </div>
+
+              <div class="metrics-cont" v-for="metric in twin.data.data_points">
+
+                <div class="value-pairs clearfix">
+                  <div class="float-left">
+                    <p class="value">{{ metric.time_stamp }}</p>
+                  </div>
+
+                  <div class="float-right">
+                    <p class="value">{{ metric.value }}</p>
+                  </div>
+
+                </div>
+              </div>
             </div>
           </div>
-          <hr>
+
+
+
+          <div class="bottom">
+            <div class="root-container">
+              <p class="meta2">Root:</p>
+              <div class="root">{{ twin.root }}</div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="bottom">
-          <div class="root-container">
-            <p class="meta2">Root:</p>
-            <div class="root">{{ twin.root }}</div>
-          </div>
-      </div>
     </div>
 </template>
 

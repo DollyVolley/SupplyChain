@@ -6,6 +6,10 @@ button {
   margin: 1em;
 }
 
+.body {
+  font-size: 10pt;
+}
+
 /* Info Bar down here*/
 a {
   font-size: 20pt;
@@ -30,10 +34,21 @@ a:hover {
   border-radius: 20px;
 }
 
-.b-tabs {
-
-}
-
 .info-bar:hover{
   background: #345695;
 }
+
+/* User Helpers*/
+
+.blueText {
+  color:#71abff;
+}
+
+.greenText {
+  color:#59ee9e;
+}
+
+
+
+
+

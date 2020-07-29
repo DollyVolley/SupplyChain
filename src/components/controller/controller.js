@@ -47,6 +47,8 @@ export default {
         alert("Twins also deserve names! Please type one.")
         return 1
       }
+      this.assetName = ""
+
 
       let mamState = Mam.init(Consts.IOTA_NODE_URL)
       let root = Mam.getRoot(mamState)
@@ -86,7 +88,7 @@ export default {
 
     attachMeasurement:  function () {
       let asset = this.$parent.getAssetByID(this.$parent.activeItemID)
-      let measurement = this.assetMeasurementValue
+      const measurement = this.assetMeasurementValue
 
       this.assetMeasurementValue = ""
 
@@ -103,7 +105,7 @@ export default {
         return 1
       }
 
-      if (!this.assetMeasurementValue) {
+      if (!measurement) {
         console.error("Please enter a measure")
         alert("\"A measure would be nice!")
         return 1
@@ -122,7 +124,7 @@ export default {
         asset.data.data_points.push(data_point)
       }else {
         console.log("This Should not be called")
-        asset.data["data_points"] = this.assetMeasurementValue
+        asset.data["data_points"] = measurement
       }
 
       const stateUpdate = {
