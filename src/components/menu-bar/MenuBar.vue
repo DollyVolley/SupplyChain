@@ -37,7 +37,7 @@
     },
     methods: {
       openOnTangleExplorer: function() {
-        const twin = this.$parent.twins[this.$parent.activeItem]
+        const twin = this.$parent.twins[this.$parent.activeItemID]
         const mode = 'public'
         const provider = 'https://nodes.devnet.iota.org'
         var envURL = `https://mam-explorer.firebaseapp.com/?provider=${encodeURIComponent(provider)}&mode=${mode}&root=`

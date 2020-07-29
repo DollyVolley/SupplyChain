@@ -1,6 +1,7 @@
 <template>
     <div class="wrapper">
       <div class="mainconent" :class="{pending: twin.pending, terminated: twin.terminated}" v-on:click="select(twin.id)">
+
         <div class="head">
           <h4 v-if="twin.pending"><b-badge>Pending</b-badge></h4>
           <h4 v-if="twin.terminated"><b-badge>Terminated</b-badge></h4>
