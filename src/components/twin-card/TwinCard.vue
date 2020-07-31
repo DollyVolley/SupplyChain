@@ -1,28 +1,30 @@
 <template>
     <div class="wrapper">
-      <div class="mainconent" :class="{pending: twin.pending, terminated: twin.terminated}" v-on:click="select(twin.id)">
-
-        <div class="head">
-          <h4 v-if="twin.pending"><b-badge>Pending</b-badge></h4>
-          <h4 v-if="twin.terminated"><b-badge>Terminated</b-badge></h4>
-          <p class="name">{{ twin.data.name }}</p>
-        </div>
-
-        <div class="row">
-          <div class="column">
-            <p class="meta">OID: </p>
-            <p class="meta">Owner: </p>
-            <p class="meta" id="label_oid" data-toggle="tooltip" v-if="twin.data.prev_owner !== null">From: </p>
-            <p class="meta">Date: </p>
+      <div :class="{pending: twin.pending, terminated: twin.terminated}">
+        <div class="mainconent" :class="{inactive: twin.pending || twin.terminated}" v-on:click="select(twin.id)">
+          <div class="head">
+            <h4 v-if="twin.pending"><b-badge>Pending</b-badge></h4>
+            <h4 v-if="twin.terminated"><b-badge>Terminated</b-badge></h4>
+            <p class="name">{{ twin.data.name }}</p>
           </div>
 
-          <div class="column">
-            <p class="meta">{{ twin.id }}</p>
-            <p class="meta">{{ twin.data.owner }}</p>
-            <p class="meta" v-if="twin.data.prev_owner !== null"> {{ twin.data.prev_owner }}</p>
-            <p class="meta">{{ twin.data.create_date }}</p>
+          <div class="row">
+            <div class="column">
+              <p class="meta">OID: </p>
+              <p class="meta">Owner: </p>
+              <p class="meta" id="label_oid" data-toggle="tooltip" v-if="twin.data.prev_owner !== null">From: </p>
+              <p class="meta">Date: </p>
+            </div>
+
+            <div class="column">
+              <p class="meta">{{ twin.id }}</p>
+              <p class="meta">{{ twin.data.owner }}</p>
+              <p class="meta" v-if="twin.data.prev_owner !== null"> {{ twin.data.prev_owner }}</p>
+              <p class="meta">{{ twin.data.create_date }}</p>
+            </div>
           </div>
         </div>
+
 
         <div class="toolbox">
           <b-button class="battn" @click="details = !details" variant="outline-dark">Details</b-button>
@@ -31,7 +33,7 @@
 
         <div class="body" v-if="details" >
 
-          <div class="metriboard">
+          <div class="metricsboard">
             <div class="wrapper-header">
               <div v-if="twin.data.data_points.length" class="metrics-cont">
                 <div class="cont-left">
@@ -57,8 +59,6 @@
               </div>
             </div>
           </div>
-
-
 
           <div class="bottom">
             <div class="root-container">

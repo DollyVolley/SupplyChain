@@ -96,16 +96,18 @@
   border-radius: 0;
 }
 
+.inactive {
+  pointer-events: none;
+}
+
 .pending {
   background: #f3fa8e;
-  pointer-events: none;
   padding-bottom: 10px;
 }
 
 .terminated {
-  pointer-events: none;
   padding-bottom: 10px;
-  background: #5c5c5c;
+  background: #9c9c9c;
 }
 
 
