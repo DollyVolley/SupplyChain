@@ -1,22 +1,26 @@
 import Vue from 'vue'
 import App from './App.vue'
-import TwinCard from './components/TwinCard.vue'
-import Controller from './components/Controller.vue'
-import TwinOverview from './components/TwinOverview.vue'
-import MenuBar from './components/MenuBar'
+import TwinCard from './components/twin-card/TwinCard.vue'
+import Controller from './components/controller/Controller.vue'
+import Dashboard from './components/dashboard/Dashboard.vue'
+import MenuBar from './components/menu-bar/MenuBar'
 
-import Footer from './components/Footer.vue'
-import Header from './components/Header.vue'
-import About from './components/About.vue'
-import Concept from './components/Concept.vue'
-import LearnMore from './components/LearnMore.vue'
+import Footer from './components/footer/Footer.vue'
+import Header from './components/header/Header.vue'
+import Concept from './components/concept/Concept.vue'
+import LearnMore from './components/learn-more/LearnMore.vue'
+import BootstrapVue from 'bootstrap-vue'
+//src/main.js
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+Vue.use(BootstrapVue)
 
 Vue.component('app-header', Header)
 Vue.component('app-twincard', TwinCard)
-Vue.component('app-twin-overview', TwinOverview)
+Vue.component('app-dashboard', Dashboard)
 Vue.component('app-controller', Controller)
 Vue.component('app-concept', Concept)
-Vue.component('app-about', About)
 Vue.component('app-learn-more', LearnMore)
 Vue.component('app-footer', Footer)
 Vue.component('app-menu-bar', MenuBar)

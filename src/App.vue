@@ -5,7 +5,7 @@
 
       <app-menu-bar id="simulation" class="bar-menu"></app-menu-bar>
       <div class="main-window">
-        <app-twin-overview class="container overview"></app-twin-overview>
+        <app-dashboard class="container overview"></app-dashboard>
         <app-controller class="container controller"></app-controller>
       </div>
       <app-concept id="concept"></app-concept>
@@ -16,21 +16,52 @@
 </template>
 
 <script>
+
 export default {
   data () {
     return {
       twins: [],
-      twinNameInput: "",
-      actingAs: "",
-      activeItem: null,
+      actingAs: "Supplier",
+      activeItemID: null,
       nextID: 0,
     }
   },
+
   methods: {
     getNextID: function() {
       let ret = this.nextID;
       this.nextID = ret + 1;
       return ret ;
+    },
+
+    setAssetByID : function(id, asset){
+      for (let i = 0; i < this.twins.length; i++) {
+        if (this.twins[i].id === id) {
+          this.twins[i] = asset
+          return 0
+        }
+      }
+      console.error("Asset not found! ID: " + id)
+
+    },
+
+    getAssetByID : function (id) {
+      for (let i = 0; i < this.twins.length; i++) {
+        if (this.twins[i].id === id) {
+          return this.twins[i]
+        }
+      }
+      console.error("Asset not found! ID: " + id)
+
+    },
+
+    getAssetByRoot : function(root) {
+      for (let i = 0; i < this.twins.length; i++) {
+        if (this.twins[i].root === root) {
+          return this.twins[i]
+        }
+      }
+      console.error("Asset not found! Root: " + root)
     }
   }
 }
@@ -55,11 +86,11 @@ div {
 .overview {
   float:left;
   display:inline;
-  width: 70%;
+  width: 75%;
 }
 
 .controller {
-  width: 30%;
+  width: 25%;
   float: right;
   display: grid;
   border: black 4px;

@@ -1,0 +1,113 @@
+
+.wrapper {
+  width: 200px;
+  flex: auto;
+  border-style: solid;
+  border-color: #5e5e5e;
+}
+
+.head {
+  padding-top: 10px;
+  text-align: center;
+}
+
+.column {
+  float: left;
+  width: 50%;
+}
+
+.row {
+  width: 100%;
+  padding-left: 30px;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.meta {
+  font-size: 10pt;
+  margin-bottom: 2px;
+}
+
+.meta2 {
+  font-size: 10pt;
+  margin: 0 auto;
+}
+
+
+.key {
+  font-size: 8pt;
+  margin: 0;
+  text-align: center;
+}
+
+.value {
+  width: 100%;
+  font-size: 8pt;
+  margin: 0;
+  float:left;
+}
+
+.value-pairs {
+  background: whitesmoke;
+}
+
+.cont-left {
+  max-width: 30%;
+  margin: 0 0 0 15px;
+  float:left;
+}
+.cont-right {
+  width: 50%;
+  margin: 0;
+  float: right;
+}
+
+
+.bottom {
+  color:white;
+  background: #5e5e5e;
+  width: 100%;
+  justify-content: center;
+  padding: 15px;
+  margin: 0 0 15px;
+}
+
+.root-container {
+  background: #5c5c5c;
+  padding-bottom: 15px;
+}
+
+.root {
+  font-size: 7pt;
+  word-wrap: break-word;
+  margin: 0;
+}
+
+.toolbox {
+  padding: 5px;
+}
+
+.details :hover {
+  background: #cccccc;
+  border-radius: 0;
+}
+
+.inactive {
+  pointer-events: none;
+}
+
+.pending {
+  background: #f3fa8e;
+  padding-bottom: 10px;
+}
+
+.terminated {
+  padding-bottom: 10px;
+  background: #9c9c9c;
+}
+
+

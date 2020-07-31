@@ -1,0 +1,54 @@
+button {
+  margin-top: 15px;
+}
+
+.card {
+  margin: 1em;
+}
+
+.body {
+  font-size: 10pt;
+}
+
+/* Info Bar down here*/
+a {
+  font-size: 20pt;
+  text-decoration: none;
+  color: white;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 30px;
+}
+
+a:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.info-bar {
+  height: 30px;
+  width: 30px;
+  float: right;
+  margin-bottom: 15px;
+  background: #578AFE;
+  border-radius: 20px;
+}
+
+.info-bar:hover{
+  background: #345695;
+}
+
+/* User Helpers*/
+
+.blueText {
+  color:#71abff;
+}
+
+.greenText {
+  color:#59ee9e;
+}
+
+
+
+
+
