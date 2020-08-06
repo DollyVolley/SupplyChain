@@ -1,0 +1,54 @@
++ Backlog +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+add import_asset_controller
+
+add export_state_option
+
+refactor: Controller
+
+add cancel_pending_request method
+
+add sim_mode_auto_cancel
+  new_modules:
+    cancel_request_controller
+    listen_on_asset // we know every address in advance
+      listen_on_address
+
+add sim_mode_dry // make dry simulation mode without actual transactions
+
+add mam_mode_private
+
+add user story
+  LAYER_2:
+  As a user I want to receive a asset by just providing a reference, so that i dont spend time with the overhead (create, copy, select)
+  supply_chain_layer_2: request_asset_controller
+  existing_modules:
+    create_twin_controller
+    request_asset_controller
+
+develop epic
+  LAYER_2 Management Interface
+  As a user I want the tools highly abstracted, in order to work effectively.
+  new_module_set second_layer_controller
+    request_asset_controller
+    auto_cancel_mode
+
+
+
+# Research +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+handle network upgrade (R.I.P. Client Libs, Hallelujah Chrysalis)
+
+add mam_mode_restricted
+  necessary refactors and implementations
+
+
+
++ UI Ideas +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+add UI sim_hover_dom
+  :hover -> show information how this would be done in production
+
+add UI edu_hover_dom
+  :hover -> provide in-depth knowledge what the people can see here.
+
