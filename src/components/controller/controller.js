@@ -36,6 +36,38 @@ export default {
       return messages
     },
 
+    async parseAsset(root) {
+      let messages = await this.fetchChannel(root, Consts.IOTA_MAM_MODE)
+      let asset = {}
+
+      for (let i in messages) {
+        console.log(messages[i])
+        let state = JSON.parse(messages[i])
+        console.log(state.data)
+
+        if (state.method === "create") {
+          asset = state.data
+        }
+        if (state.method === "attach") {
+          console.log(JSON.stringify(asset))
+          console.log("I'll try")
+          if (asset.data_points.length){
+            console.log("Push")
+            asset.data_points.push(state.data)
+          }
+          else {
+            console.log("New")
+            asset.data_points = [state.data]
+          }
+        }
+      }
+
+      console.log("Pares Asset")
+      console.log(JSON.stringify(asset))
+
+      return asset
+    },
+
     createTwin: function createTwin() {
       let owner = this.$parent.actingAs
       if (!owner) {
@@ -130,7 +162,7 @@ export default {
       this.$parent.setAssetByID(asset.id, asset)
     },
 
-    requestAsset: function () {
+    async requestAsset() {
       let selectedID = this.$parent.activeItemID
       let assetOriginalRoot = this.originAssetRoot
       let assetTwin = this.$parent.getAssetByID(selectedID)
@@ -169,28 +201,16 @@ export default {
       const data = JSON.stringify(requestMessage)
       const trytes = Converter.asciiToTrytes(data);
       assetTwin.state = this.publishMessage(assetTwin.state, trytes)
+      let requestedAsset = await this.parseAsset(assetOriginalRoot)
 
-      let messages = this.fetchChannel(assetOriginalRoot, Consts.IOTA_MAM_MODE)
-      messages.then( (messages) => {
-        console.log(messages)
-        let index = messages.length - 1
-        let state = JSON.parse(messages[index])
-        console.log(state)
-        if (state.data === undefined) {
-          console.log("No data found. Invalid object!")
-        } else {
-          console.log("Copy data to clone")
-          let new_name = assetTwin.data.name
-          let new_owner = assetTwin.data.owner
-          assetTwin.data = state.data
-          assetTwin.data.prev_owner = assetTwin.data.owner
-          assetTwin.data.name = new_name
-          assetTwin.data.owner = new_owner
-          assetTwin.pending = true
+      requestedAsset.name = assetTwin.data.name
+      requestedAsset.prev_owner = requestedAsset.owner
+      requestedAsset.owner = assetTwin.data.owner
+      assetTwin.data = requestedAsset
+      assetTwin.pending = true
 
-          this.$parent.setAssetByID(selectedID, assetTwin)
-        }
-      })
+      this.$parent.setAssetByID(selectedID, assetTwin)
+
     },
 
     approveTransfer () {

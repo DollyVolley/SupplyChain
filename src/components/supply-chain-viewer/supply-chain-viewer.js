@@ -158,6 +158,23 @@ export default {
       .attr('class', 'caption');
   },
   methods: {
+    appendNode: function(node){
+      if (this.data.nodes) {
+        this.data.nodes.push(node)
+      }
+      else {
+        this.data.nodes = node
+      }
+    },
+    appendLink: function(link){
+      console.log(`Appending link:\n${JSON.stringify(link)}`)
+      if (this.data.links) {
+        this.data.links.push(link)
+      }
+      else {
+        this.data.links = link
+      }
+    },
     async fetchChannel(root, mode) {
       console.log(`Fetch channel:\nRoot ${root}\nmode ${mode}\n`)
       const result = await Mam.fetch(root, mode)
@@ -170,67 +187,109 @@ export default {
     },
 
     async parse() {
-      const states = await this.fetchChannel(this.root, Consts.IOTA_MAM_MODE)
 
       this.data.nodes = []
       this.data.links = []
-      let nodes = []
-      let links = []
 
+      var states = await this.fetchChannel(this.root, Consts.IOTA_MAM_MODE)
+      let owner = []
       let current_owner = ""
-      let prv_transfer = false
+      let current_owner_group = 0
 
-      for(let i = 0; i < states.length; i++) {
-        const state = JSON.parse(states[i])
+      let transfer_triggered = false
+      let next_root = ""
 
-        if (state.method === "create") {
-          current_owner = state.data.owner
+      let chain_terminated = false
 
-          nodes.push({
-            name: state.data.name,
-            class: state.data.owner,
-            group: 1
-          })
-        }
+      while (!chain_terminated){
+        for(let i = 0; i < states.length; i++) {
+          const state = JSON.parse(states[i])
+          console.log(`StateNr ${i}: ${state.method}\nStep: ${this.nodes.length}`)
 
-        if (state.method === "attach") {
-          if (i > 0) {
-            links.push({
-              "source": i - 1,
-              "target": i,
-              "value": 1,
-              "type": "progress state"
-            })
-            nodes.push({
-              name: state.data.value,
-              class: current_owner,
-              group: 1
+          if (state.method === "create") {
+            console.log("create")
+            console.log(this.nodes.length)
+
+            current_owner = state.data.owner
+            if(owner.indexOf(current_owner) !== -1){
+              if(owner) {
+                owner.push(current_owner)
+              } else {
+                owner = current_owner
+              }
+            }
+            current_owner_group = owner.indexOf(current_owner)
+
+            this.appendNode({
+                name: state.data.name,
+                class: state.data.owner,
+                group: current_owner_group
+              })
+          }
+
+          if (state.method === "transfer_request") {
+            console.log("transfer_request")
+            console.log(this.nodes.length)
+
+            this.appendLink({
+              "source": this.nodes.length - 2,
+              "target": this.nodes.length - 1,
+              "value": 2,
+              "type": "transfer-ownership"
             })
           }
 
+          if (state.method === "attach") {
+            console.log("attach")
+            console.log(this.nodes.length)
+
+            if (i > 0) {
+              this.appendNode({
+                name: state.data.value,
+                class: current_owner,
+                group: current_owner_group
+              })
+              this.appendLink({
+                "source": this.nodes.length - 2,
+                "target": this.nodes.length - 1,
+                "value": 1,
+                "type": "progress-state"
+              })
+            }
+          }
 
           if (state.method === "transfer") {
-            links.push({
-              "source": i - 1,
-              "target": i,
-              "value": 1,
-              "type": "progress state"
-            })
-            nodes.push({
+            console.log("transfer")
+            console.log(this.nodes.length)
+            this.appendNode({
               name: "Transfer",
-              class: state.data.owner,
-              group: 1
+              class: current_owner,
+              group: current_owner_group
             })
-            prv_transfer = true
+
+            this.appendLink({
+              "source": this.nodes.length - 2,
+              "target": this.nodes.length - 1,
+              "value": 1,
+              "type": "progress-state"
+            })
+
+            next_root = state.params.target
+            transfer_triggered = true
+            break;
           }
         }
+        if (transfer_triggered) {
+          states = await this.fetchChannel(next_root, Consts.IOTA_MAM_MODE)
+          transfer_triggered = false
+        } else {
+          chain_terminated = true
+        }
       }
-
-      console.log(nodes.length)
-      console.log(links.length)
-
-      this.data.nodes = nodes
-      this.data.links = links
+      console.log(`Nodes: ${this.data.nodes.length}\nEdges: ${this.data.links.length}`)
+      for (let i in this.data.links) {
+        console.log(JSON.stringify(this.data.links[i]))
+      }
     },
     tick() {
       // If no data is passed to the Vue component, do nothing

@@ -11,12 +11,12 @@ path.link {
   stroke: #666;
   stroke-width: 1.5px;
 }
-path.link.depends {
-  stroke: #005900;
+path.link.transfer-ownership {
+  stroke: #71abff;
   stroke-dasharray: 5, 2;
 }
-path.link.needs {
-  stroke: #7f3f00;
+path.link.progress-state {
+  stroke: #59ee9e;
 }
 
 circle {
@@ -24,11 +24,11 @@ circle {
   stroke: #191900;
   stroke-width: 1.5px;
 }
-circle.system {
+circle.Supplier {
   fill: #cce5ff;
   stroke: #003366;
 }
-circle.mount {
+circle.Customer {
   fill: #ffe5e5;
   stroke: #660000;
 }
