@@ -41,7 +41,7 @@
 
         <div class="body" v-if="details" >
           <div class="modal-button-container">
-            <b-button @click="showModal = !showModal" variant="outline-dark">View Supply Chain</b-button>
+            <b-button class="modal-button" @click="showModal = !showModal" variant="outline-dark">View Supply Chain</b-button>
           </div>
 
           <div class="metricsboard">

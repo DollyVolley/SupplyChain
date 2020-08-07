@@ -77,7 +77,7 @@ export default {
 
     attachMeasurement:  function () {
       let asset = this.$parent.getAssetByID(this.$parent.activeItemID)
-      const measurement = this.assetMeasurementValue
+      const payload = this.assetMeasurementValue
 
       this.assetMeasurementValue = ""
 
@@ -94,7 +94,7 @@ export default {
         return 1
       }
 
-      if (!measurement) {
+      if (!payload) {
         console.error("Please enter a measure")
         alert("\"A measure would be nice!")
         return 1
@@ -105,20 +105,22 @@ export default {
         return 1
       }
 
+      let payload_data = {}
+
       if (asset.data.data_points) {
-        var data_point = {
-          value: measurement,
+        payload_data = {
+          value: payload,
           time_stamp: new Date().toLocaleString()
         }
-        asset.data.data_points.push(data_point)
+        asset.data.data_points.push(payload_data)
       }else {
         console.log("This Should not be called")
-        asset.data["data_points"] = measurement
+        asset.data["data_points"] = payload_data
       }
 
       const stateUpdate = {
-        method : "update",
-        data : asset.data,
+        method : "attach",
+        data : payload_data,
       }
 
       const data = JSON.stringify(stateUpdate)
