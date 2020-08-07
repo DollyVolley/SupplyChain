@@ -31,7 +31,18 @@
           <b-button class="battn"  @click="copyRoot(twin.root)" variant="outline-dark" >Copy Root</b-button>
         </div>
 
+        <b-modal id="modal-xl" size="xl" title="Supply Chain" v-model="showModal" ok-only>
+          <app-supply-chain-viewer
+            v-bind:root="twin.root"
+          ></app-supply-chain-viewer>
+          <template v-slot:modal-footer></template>
+        </b-modal>
+
+
         <div class="body" v-if="details" >
+          <div class="modal-button-container">
+            <b-button @click="showModal = !showModal" variant="outline-dark">View Supply Chain</b-button>
+          </div>
 
           <div class="metricsboard">
             <div class="wrapper-header">

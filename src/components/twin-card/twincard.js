@@ -4,6 +4,7 @@ export default {
   data: function() {
     return {
       details: false,
+      showModal: false,
     }
   },
   methods: {

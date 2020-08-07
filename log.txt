@@ -17,3 +17,16 @@ Hit CTRL-C to stop the server
   http://127.0.0.1:[32m8081[39m
   http://192.168.0.94:[32m8081[39m
 Hit CTRL-C to stop the server
+[Thu Aug 06 2020 15:18:58 GMT+0200 (Central European Summer Time)]  "[36mGET[39m [36m/[39m" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36"
+[Thu Aug 06 2020 15:18:58 GMT+0200 (Central European Summer Time)]  "[36mGET[39m [36m/build.js[39m" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36"
+[Thu Aug 06 2020 15:18:58 GMT+0200 (Central European Summer Time)]  "[36mGET[39m [36m/lib/mam.web.min.js[39m" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36"
+[Thu Aug 06 2020 15:19:02 GMT+0200 (Central European Summer Time)]  "[36mGET[39m [36m/build.js.map[39m" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36"
+[Thu Aug 06 2020 15:29:05 GMT+0200 (Central European Summer Time)]  "[36mGET[39m [36m/[39m" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36"
+[33mStarting up http-server, serving [39m[36mdist[39m[33m[39m
+[33mAvailable on:[39m
+  http://127.0.0.1:[32m8083[39m
+  http://192.168.0.94:[32m8083[39m
+Hit CTRL-C to stop the server
+[31mhttp-server stopped.[39m
+[31mhttp-server stopped.[39m
+[31mhttp-server stopped.[39m

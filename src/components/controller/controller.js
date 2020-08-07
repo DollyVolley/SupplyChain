@@ -1,5 +1,5 @@
 import Consts from "../../common/const"
-import {publishMessage, fetchChannel} from "../../mixins/mam-controller"
+import {Asset} from "../../mixins/models"
 var Converter = require('@iota/converter');
 
 
@@ -13,6 +13,29 @@ export default {
     }
   },
   methods: {
+    // TODO: Refactor publishMessage (Mixin)
+    publishMessage: function (mamState, trytesMessage) {
+      console.log("Commiting new State")
+      var message = Mam.create(mamState, trytesMessage);
+      try {
+        Mam.attach(message.payload, message.address, Consts.IOTA_ATTACH_DEPTH, Consts.IOTA_ATTACH_WORK)
+      } catch (err) {
+        console.log("There was an error attaching the message", err);
+      }
+      return message.state
+    },
+    // TODO: Refactor fetchChannel (Mixin)
+    async fetchChannel(root, mode) {
+      console.log(`Fetch channel:\nRoot ${root}\nmode ${mode}\n`)
+      const result = await Mam.fetch(root, mode)
+      console.log(`Success: ${result.messages.length} messages fetched`)
+      let messages = []
+      for (var i in result.messages) {
+        messages.push(Converter.trytesToAscii(result.messages[i]))
+      }
+      return messages
+    },
+
     createTwin: function createTwin() {
       let owner = this.$parent.actingAs
       if (!owner) {
@@ -36,21 +59,7 @@ export default {
       let asset_id = this.$parent.getNextID()
 
       console.log("Create asset #id " + asset_id)
-      let asset = {
-        id: asset_id,
-        state: null,
-        root: root,
-        pending: false,
-        terminated: false,
-        prev_root: null,
-        data: {
-          name: name,
-          owner: owner,
-          data_points: [],
-          prev_owner: null,
-          create_date: new Date().toISOString().split('T')[0]
-        }
-      }
+      let asset = Asset(asset_id, name, root, owner)
 
       const createMessage = {
         method: "create",
@@ -60,7 +69,7 @@ export default {
       var data = JSON.stringify(createMessage)
       var trytes = Converter.asciiToTrytes(data);
 
-      asset.state  = publishMessage(mamState, trytes)
+      asset.state  = this.publishMessage(mamState, trytes)
       this.$parent.twins.push(asset)
 
       return true
@@ -115,7 +124,7 @@ export default {
       const data = JSON.stringify(stateUpdate)
       const trytes = Converter.asciiToTrytes(data);
 
-      asset.state = publishMessage(asset.state, trytes)
+      asset.state = this.publishMessage(asset.state, trytes)
       this.$parent.setAssetByID(asset.id, asset)
     },
 
@@ -157,9 +166,9 @@ export default {
 
       const data = JSON.stringify(requestMessage)
       const trytes = Converter.asciiToTrytes(data);
-      assetTwin.state = publishMessage(assetTwin.state, trytes)
+      assetTwin.state = this.publishMessage(assetTwin.state, trytes)
 
-      let messages = fetchChannel(assetOriginalRoot, Consts.IOTA_MAM_MODE)
+      let messages = this.fetchChannel(assetOriginalRoot, Consts.IOTA_MAM_MODE)
       messages.then( (messages) => {
         console.log(messages)
         let index = messages.length - 1
@@ -207,7 +216,7 @@ export default {
         return 1
       }
 
-      let messages = fetchChannel(assetTargetRoot, Consts.IOTA_MAM_MODE)
+      let messages = this.fetchChannel(assetTargetRoot, Consts.IOTA_MAM_MODE)
       messages.then( (messages) => {
         console.log(messages)
         if (messages.length !== 2) {
@@ -250,7 +259,7 @@ export default {
 
           targetAsset.pending = false
           assetOriginal.terminated = true
-          assetOriginal.state = publishMessage(assetOriginal.state, trytes)
+          assetOriginal.state = this.publishMessage(assetOriginal.state, trytes)
 
           this.$parent.setAssetByID(selectedID, assetOriginal)
           this.$parent.setAssetByID(targetAsset.id, targetAsset)
