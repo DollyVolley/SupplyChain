@@ -228,15 +228,17 @@ export default {
           }
 
           if (state.method === "transfer_request") {
-            console.log("transfer_request")
-            console.log(this.nodes.length)
+            if(this.data.nodes.length > 1) {
+              console.log("transfer_request")
+              console.log(this.nodes.length)
 
-            this.appendLink({
-              "source": this.nodes.length - 2,
-              "target": this.nodes.length - 1,
-              "value": 2,
-              "type": "transfer-ownership"
-            })
+              this.appendLink({
+                "source": this.nodes.length - 2,
+                "target": this.nodes.length - 1,
+                "value": 2,
+                "type": "transfer-ownership"
+              })
+            }
           }
 
           if (state.method === "attach") {
@@ -260,20 +262,6 @@ export default {
 
           if (state.method === "transfer") {
             console.log("transfer")
-            console.log(this.nodes.length)
-            this.appendNode({
-              name: "Transfer",
-              class: current_owner,
-              group: current_owner_group
-            })
-
-            this.appendLink({
-              "source": this.nodes.length - 2,
-              "target": this.nodes.length - 1,
-              "value": 1,
-              "type": "progress-state"
-            })
-
             next_root = state.params.target
             transfer_triggered = true
             break;
